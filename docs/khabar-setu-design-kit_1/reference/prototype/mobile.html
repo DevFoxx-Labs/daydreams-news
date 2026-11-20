@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="hi"><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+body{width:1920px;background:#eceff3;padding:64px 70px 70px}
+.head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px}
+.head h1{font:800 50px/1 M}.head h1 span{color:var(--red)}
+.head p{font:500 15px M,Inter;color:var(--ink2)}
+.row{display:flex;justify-content:space-between}
+.col{display:flex;flex-direction:column;align-items:center;gap:18px}
+.lab{font:700 16px M}.lab b{color:var(--red);font-family:Inter;margin-right:8px}
+.phone{width:390px;height:844px;border-radius:52px;background:#111;padding:12px;box-shadow:0 40px 80px -30px rgba(0,0,0,.45)}
+.scr{width:100%;height:100%;border-radius:42px;overflow:hidden;background:#fff;position:relative;display:flex;flex-direction:column}
+.sb{height:48px;display:flex;justify-content:space-between;align-items:center;padding:6px 30px 0;font:600 15px Inter;flex:none}
+.island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:120px;height:34px;border-radius:20px;background:#111;z-index:5}
+.top{display:flex;justify-content:space-between;align-items:center;padding:6px 16px 10px;flex:none}
+.top .logo .mk{width:34px;height:34px;font-size:24px;line-height:37px;border-radius:5px}.top .logo .wm{font-size:24px}
+.top .ic{display:flex;gap:16px;font-size:20px;align-items:center}
+.chips{display:flex;gap:6px;padding:0 16px 0;background:var(--red);flex:none;overflow:hidden;white-space:nowrap}
+.chips a{color:#fff;font:600 15px M;padding:9px 8px}.chips a.on{border-bottom:3px solid #fff}
+.tk{display:flex;align-items:center;gap:8px;padding:8px 16px;border-bottom:1px solid var(--line);font:500 13.5px M;white-space:nowrap;overflow:hidden;flex:none}
+.tk b{background:var(--ink);color:#fff;font:800 12px M;padding:2px 8px;flex:none}
+.scroll{flex:1;overflow:hidden}
+.hero [data-s]{height:220px}
+.hero .t{padding:12px 16px 14px;border-bottom:8px solid var(--soft)}
+.hero .h{font-size:22px;line-height:1.28}
+.li{display:grid;grid-template-columns:1fr 104px;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.li [data-s]{height:70px;border-radius:5px}
+.li .h{font-size:16px}
+.li .time{font-size:12px}
+.tabbar{flex:none;height:76px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:8px 4px 22px;background:#fff}
+.tabbar div{display:flex;flex-direction:column;align-items:center;gap:2px;font:600 11px M;color:var(--mut)}
+.tabbar b{font-size:19px;font-weight:400;font-family:"DejaVu Sans"}
+.tabbar .on{color:var(--red)}
+/* article */
+.abar{display:flex;justify-content:space-between;align-items:center;padding:6px 16px 10px;border-bottom:1px solid var(--line);font-size:20px;flex:none}
+.prog{height:3px;background:#f0f0f0;flex:none}.prog i{display:block;height:3px;width:30%;background:var(--gold)}
+.art{padding:14px 16px}
+.art h1{font:800 25px/1.3 M;margin:4px 0 10px}
+.art .by{display:flex;gap:10px;align-items:center;padding:10px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:12px}
+.av{width:36px;height:36px;border-radius:50%;background:#f3d5da;color:var(--red);font:800 16px/36px M;text-align:center}
+.by b{font:700 14px M;display:block}.by span{font:400 12px M;color:var(--mut)}
+.hl{background:#fff6f7;border-left:4px solid var(--red);padding:10px 12px;margin-bottom:12px}
+.hl b{font:800 14px M;color:var(--red)}.hl li{font:500 14.5px/1.5 M;margin-left:16px}
+.art p{font:400 17px/1.75 M;color:#1d1d1d;margin-bottom:12px}
+.sharebar{flex:none;display:grid;grid-template-columns:repeat(4,1fr) 1.4fr;gap:8px;padding:10px 14px 26px;border-top:1px solid var(--line);background:#fff}
+.sharebar span{height:40px;border-radius:20px;display:flex;align-items:center;justify-content:center;color:#fff;font:700 13px Inter}
+.sharebar .wa{background:#25D366;font:700 14px M;border-radius:20px}
+/* story */
+.story{position:absolute;inset:0}
+.story [data-s]{position:absolute;inset:0}
+.story .bars{position:absolute;top:58px;left:14px;right:14px;display:flex;gap:4px;z-index:3}.story .bars i{flex:1;height:3px;background:rgba(255,255,255,.45);border-radius:2px}.story .bars i:first-child{background:#fff}.story .bars i:nth-child(2){background:linear-gradient(90deg,#fff 60%,rgba(255,255,255,.45) 60%)}
+.story .sh{position:absolute;top:72px;left:14px;right:14px;display:flex;justify-content:space-between;align-items:center;color:#fff;z-index:3;font:700 14px M}
+.story .sh .logo .mk{width:28px;height:28px;font-size:19px;line-height:31px}
+.story .ov{position:absolute;left:0;right:0;bottom:0;padding:160px 22px 40px;background:linear-gradient(transparent,rgba(0,0,0,.92) 45%);color:#fff;z-index:3}
+.story .n{display:inline-block;background:var(--red);font:800 15px M;padding:4px 12px;margin-bottom:12px}
+.story h2{font:800 30px/1.25 M;margin-bottom:10px}
+.story p{font:400 16px/1.55 M;color:#e5e5e5}
+.story .up{margin-top:22px;text-align:center;font:600 14px M}
+.story .up span{display:block;font-size:20px}
+/* menu */
+.menu{flex:1;overflow:hidden;padding:0 16px}
+.msearch{border:1px solid #ddd;border-radius:8px;padding:11px 14px;font:400 15px M;color:#999;margin:4px 0 14px}
+.mh{font:800 13px M;color:var(--mut);letter-spacing:.5px;margin:10px 0 6px}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.sgrid a{border:1px solid var(--line);border-radius:6px;padding:10px 4px;text-align:center;font:600 14px M}
+.sgrid a.on{background:var(--red);color:#fff;border-color:var(--red)}
+.mlist a{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font:700 17px M}
+.mlist a span{color:var(--mut);font-weight:400}
+.mlang{display:flex;gap:8px;margin-top:14px}.mlang a{flex:1;text-align:center;border:1px solid var(--ink);border-radius:6px;padding:9px;font:700 14px M}.mlang a.on{background:var(--ink);color:#fff}
+</style></head><body>
+<div class="head"><h1>ख़बर सेतु — <span>मोबाइल</span></h1><p>Hindi News Portal · iPhone 15 · 390 × 844 · डेमो कंटेंट</p></div>
+<div class="row">
+
+<div class="col"><div class="phone"><div class="scr"><div class="island"></div><div class="sb"><span>9:41</span><span>▂▄▆ ◔</span></div>
+  <div class="top"><div class="logo"><div class="mk">ख़</div><div class="wm">ख़बर सेतु</div></div><div class="ic"><span>⌕</span><span>🔔</span><span>☰</span></div></div>
+  <div class="chips"><a class="on">होम</a><a>देश</a><a>राज्य</a><a>मनोरंजन</a><a>क्रिकेट</a><a>बिज़नेस</a><a>टेक</a></div>
+  <div class="tk"><b>ब्रेकिंग</b><span>5 राज्यों में घने कोहरे का अलर्ट · दिल्ली मेट्रो की नई लाइन पर ट्रायल</span></div>
+  <div class="scroll">
+    <div class="hero"><div data-s="rain"><span class="live" style="position:absolute;top:12px;left:12px;z-index:2">LIVE</span></div><div class="t"><span class="cat">मौसम</span><div class="h">उत्तर भारत में कोहरे और ठंड का डबल अटैक, कई उड़ानें और ट्रेनें लेट</div><span class="time">10 मिनट पहले</span></div></div>
+    <div class="li"><div><span class="cat">दिल्ली-एनसीआर</span><div class="h">प्रदूषण पर सख़्ती, स्कूलों का समय बदला</div><span class="time">25 मिनट पहले</span></div><div data-s="city"></div></div>
+    <div class="li"><div><span class="cat">बिज़नेस</span><div class="h">बाज़ार में तेज़ी, निवेशकों की संपत्ति बढ़ी</div><span class="time">1 घंटा पहले</span></div><div data-s="market"></div></div>
+    <div class="li"><div><span class="cat">शिक्षा</span><div class="h">बोर्ड परीक्षा: नई गाइडलाइन जारी</div><span class="time">2 घंटे पहले</span></div><div data-s="school"></div></div>
+  </div>
+  <div class="tabbar"><div class="on"><b>⌂</b>होम</div><div><b>◧</b>स्टोरीज़</div><div><b>▶</b>वीडियो</div><div><b>📰</b>ई-पेपर</div><div><b>☺</b>प्रोफ़ाइल</div></div>
+</div></div><div class="lab"><b>01</b>होमपेज</div></div>
+
+<div class="col"><div class="phone"><div class="scr"><div class="island"></div><div class="sb"><span>9:41</span><span>▂▄▆ ◔</span></div>
+  <div class="abar"><span>←</span><div class="logo"><div class="mk" style="width:28px;height:28px;font-size:19px;line-height:31px">ख़</div></div><span style="display:flex;gap:16px"><span>अ+</span><span>🔖</span></span></div>
+  <div class="prog"><i></i></div>
+  <div class="scroll"><div data-s="rain" style="height:200px"></div><div class="art">
+    <span class="cat">देश › मौसम</span>
+    <h1>उत्तर भारत में कोहरे और ठंड का डबल अटैक, अगले 48 घंटे भारी</h1>
+    <div class="by"><div class="av">रि</div><div><b>रिपोर्टर का नाम</b><span>नई दिल्ली · 20 नवंबर, 01:10 PM · 4 मिनट</span></div></div>
+    <div class="hl"><b>मुख्य बातें</b><ul><li>5 राज्यों में ऑरेंज अलर्ट</li><li>40+ उड़ानें देरी से</li></ul></div>
+    <p><b>नई दिल्ली।</b> उत्तर भारत के ज़्यादातर हिस्सों में शुक्रवार सुबह घना कोहरा छाया रहा, जिससे सड़क, रेल और हवाई यातायात पर असर पड़ा।</p>
+  </div></div>
+  <div class="sharebar"><span style="background:#1877F2">f</span><span style="background:#111">X</span><span style="background:#0A66C2">in</span><span style="background:#888">⧉</span><span class="wa">WhatsApp</span></div>
+</div></div><div class="lab"><b>02</b>आर्टिकल पेज</div></div>
+
+<div class="col"><div class="phone"><div class="scr" style="background:#000"><div class="island"></div>
+  <div class="story"><div data-s="hills"></div>
+    <div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="sh"><div class="logo" style="gap:8px"><div class="mk">ख़</div><span>ख़बर सेतु · वेब स्टोरीज़</span></div><span>✕</span></div>
+    <div class="ov"><span class="n">2 / 7</span><h2>बर्फ़ से ढकी चोटियां और देवदार के जंगल</h2><p>दिसंबर में यहां का तापमान माइनस तक जाता है, बर्फ़बारी देखने का सबसे अच्छा समय।</p><div class="up"><span>⌃</span>पूरी ख़बर पढ़ें</div></div>
+  </div>
+</div></div><div class="lab"><b>03</b>वेब स्टोरी</div></div>
+
+<div class="col"><div class="phone"><div class="scr"><div class="island"></div><div class="sb"><span>9:41</span><span>▂▄▆ ◔</span></div>
+  <div class="top" style="border-bottom:1px solid var(--line)"><div class="logo"><div class="mk">ख़</div><div class="wm">ख़बर सेतु</div></div><div class="ic"><span>✕</span></div></div>
+  <div class="menu">
+    <div class="msearch">⌕ ख़बरें, शहर या विषय खोजें</div>
+    <div class="mh">अपना राज्य चुनें</div>
+    <div class="sgrid"><a class="on">उत्तर प्रदेश</a><a>बिहार</a><a>दिल्ली</a><a>मध्य प्रदेश</a><a>राजस्थान</a><a>हरियाणा</a><a>पंजाब</a><a>उत्तराखंड</a><a>झारखंड</a></div>
+    <div class="mh">कैटेगरी</div>
+    <div class="mlist"><a>देश <span>›</span></a><a>दुनिया <span>›</span></a><a>मनोरंजन <span>›</span></a><a>क्रिकेट <span>›</span></a><a>बिज़नेस <span>›</span></a><a>नौकरी और शिक्षा <span>›</span></a></div>
+    <div class="mlang"><a class="on">हिंदी</a><a>English</a></div>
+  </div>
+  <div class="tabbar"><div><b>⌂</b>होम</div><div><b>◧</b>स्टोरीज़</div><div><b>▶</b>वीडियो</div><div><b>📰</b>ई-पेपर</div><div class="on"><b>☰</b>मेन्यू</div></div>
+</div></div><div class="lab"><b>04</b>मेन्यू · राज्य चुनें</div></div>
+
+</div>
+<script src="scenes.js"></script>
+</body></html>

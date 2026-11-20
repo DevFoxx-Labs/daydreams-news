@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ख़बर सेतु (Khabar Setu)
 
-## Getting Started
+A fast, mobile-first Hindi news portal — Next.js 16 (App Router, Cache Components),
+TypeScript and Tailwind CSS v4.
 
-First, run the development server:
+Reader site is built against mock data behind a swappable data-access layer; the
+newsroom CMS plugs into the same interface later.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+pnpm dev            # http://localhost:3000
+pnpm check          # typecheck + lint + tests
+pnpm build && pnpm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Useful routes while developing:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Route | What |
+|---|---|
+| `/` | Homepage (DESIGN §5) |
+| `/desh/uttar-bharat-kohra-thand-double-attack-1001` | Article template |
+| `/dev/components` | Design-system preview (development only) |
+| `/consent` · `/grievance` | Consent dashboard and rights requests |
+| `/api/legal` | Versioned legal notices for the apps |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Responsive check (the dev or production server must be running):
 
-## Learn More
+```bash
+BASE_URL=http://localhost:3000 ROUTE=/ node scripts/screenshot.mjs home 360,390,768,1024,1280,1440,1920
+ROUTE=/ node scripts/overflow.mjs 360     # which element causes horizontal scroll
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Documentation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| File | What |
+|---|---|
+| `docs/PRD.md` | What to build, phases, acceptance criteria |
+| `docs/DESIGN.md` | How it looks — tokens, components, every screen |
+| `docs/GRAPHICS_PROMPTS.md` | Image generation prompts and the news-ethics rules |
+| `docs/project-rules.md` | The standards this repo is built to — read first |
+| `docs/known-gaps.md` | What is not done yet, with severity |
+| `docs/owner-todo.md` | Tasks only the owner can do (legal facts, accounts, keys) |
+| `changes/CHANGELOG.md` | One entry per task |
+| `docs/reference/` | Reference screens and the static prototypes |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Structure
 
-## Deploy on Vercel
+```
+app/            routes (reader site + /api)
+components/
+  layout/       shell: utility bar, masthead, nav, mobile header, footer, tab bar
+  news/         primitives: StoryCard variants, AdSlot, Ticker, SectionHeader…
+  home/ article/ live/ stories/ consent/ legal/   per-template pieces
+  ui/           shadcn-style primitives restyled to the tokens
+lib/
+  cms/          the only way pages read content (swap this for the CMS)
+  data/         typed mock content
+  services/     weather / AQI / market / cricket adapters
+  consent/ legal/ seo/ search/ format/            supporting domains
+messages/hi.json   every UI string
+tests/             Vitest unit tests
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Configuration
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Everything environment-specific lives in `lib/site.ts` and is read from env vars.
+Unset legal values render a visible `[भरना बाकी]` placeholder rather than an invented
+fact — see `docs/owner-todo.md` for the full list.
+
+Feature flags fail closed (`NEXT_PUBLIC_FLAG_*` must be exactly `true` to enable a
+feature): ad network, analytics, web push, next-story infinite scroll.
+
+> All content currently on the site is demo content. Headlines, names and figures are
+> invented and bear no relation to real people or events.

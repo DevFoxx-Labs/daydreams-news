@@ -1,69 +1,191 @@
-import Image from "next/image";
+import type { Metadata } from "next";
 
-export default function Home() {
+import { LeadBlock } from "@/components/home/lead-block";
+import {
+  BizGrid,
+  CategoryBlock,
+  PhotoGalleryBento,
+  RashifalGrid,
+  VideoSection,
+  WebStoriesRow,
+} from "@/components/home/sections";
+import { StateStrip } from "@/components/home/state-strip";
+import {
+  MarketWidget,
+  MostRead,
+  ScoreCard,
+} from "@/components/home/widgets";
+import { SiteShell } from "@/components/layout/site-shell";
+import { AdSlot, ResponsiveAdSlot } from "@/components/news/ad-slot";
+import { Container } from "@/components/news/primitives";
+import { SectionHeader } from "@/components/news/section-header";
+import { RowLeftCard, StackCard } from "@/components/news/story-card";
+import {
+  getCategory,
+  getFeaturedStates,
+  getHomeData,
+  getStateStories,
+} from "@/lib/cms";
+import { MOCK_NOW_ISO } from "@/lib/data/clock";
+import { hindiTimeAgo } from "@/lib/format/hindiDate";
+import { t } from "@/lib/i18n";
+import { storyHref } from "@/lib/routes";
+import { getMarket, getScorecard } from "@/lib/services/widgets";
+import { site } from "@/lib/site";
+import { websiteJsonLd } from "@/lib/seo/json-ld";
+
+/** Homepage — DESIGN.md §5, FR-H1 … FR-H7. */
+
+export const metadata: Metadata = {
+  title: `${site.name} — ताज़ा हिंदी समाचार, देश-दुनिया और आपके शहर की ख़बरें`,
+  description: site.description,
+  alternates: { canonical: "/" },
+};
+
+export default async function HomePage() {
+  const [home, featuredStates, deshCategory, duniyaCategory, market, score] =
+    await Promise.all([
+      getHomeData(),
+      getFeaturedStates(),
+      getCategory("desh"),
+      getCategory("duniya"),
+      getMarket(),
+      getScorecard(),
+    ]);
+
+  // The server renders the default state; the strip swaps in the reader's
+  // saved state after mount (FR-H3).
+  const defaultState = featuredStates[0];
+  const stateFeed = await getStateStories(defaultState.slug, { count: 6 });
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <SiteShell variant="full">
+      <script
+        type="application/ld+json"
+        // Static, self-generated JSON-LD — no user input reaches this string.
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }}
+      />
+
+      <h1 className="sr-only">
+        {site.name} — {site.tagline}
+      </h1>
+
+      <LeadBlock
+        hero={home.hero}
+        secondary={home.secondary}
+        topNews={home.topNews}
+        liveBlog={home.liveBlog}
+        liveBreaking={home.liveBreaking}
+      />
+
+      <StateStrip
+        states={featuredStates}
+        initialState={defaultState.slug}
+        initialStories={stateFeed.stories.map((story) => ({
+          id: story.id,
+          title: story.title,
+          href: storyHref(story),
+          category: story.subCategory?.name ?? story.category.name,
+          timeAgo: hindiTimeAgo(story.publishedAt, MOCK_NOW_ISO),
+        }))}
+      />
+
+      <Container className="mb-8">
+        <ResponsiveAdSlot
+          mobile="320x100"
+          desktop="970x250"
+          placement="home-after-states"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      </Container>
+
+      <Container>
+        {deshCategory ? (
+          <CategoryBlock
+            category={deshCategory}
+            lead={home.deshLead}
+            stories={home.deshList}
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+            <MostRead stories={home.mostRead} />
+          </CategoryBlock>
+        ) : null}
+      </Container>
+
+      <WebStoriesRow stories={home.webStories} />
+
+      <Container>
+        {/* खेल · मनोरंजन · rail — DESIGN.md §5.5 */}
+        <section className="mb-8 grid gap-6 lg:mb-10 lg:grid-cols-[1fr_1fr_330px] lg:gap-[30px]">
+          <div>
+            <SectionHeader
+              title="खेल"
+              href="/khel"
+              moreLabel={t.common.more}
+              moreHref="/khel"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <ScoreCard result={score} />
+            {home.cricketStory ? (
+              <StackCard story={home.cricketStory} showTime />
+            ) : null}
+          </div>
+
+          <div>
+            <SectionHeader
+              title="मनोरंजन"
+              href="/manoranjan"
+              moreLabel={t.common.more}
+              moreHref="/manoranjan"
+            />
+            {home.entertainmentLead ? (
+              <StackCard
+                story={home.entertainmentLead}
+                imageClassName="h-[200px] lg:h-[220px]"
+                headingClassName="t-h-lg"
+                showTime
+              />
+            ) : null}
+            <div className="mt-3.5">
+              {home.entertainmentList.map((story, index) => (
+                <RowLeftCard
+                  key={story.id}
+                  story={story}
+                  last={index === home.entertainmentList.length - 1}
+                />
+              ))}
+            </div>
+          </div>
+
+          <aside>
+            <MarketWidget result={market} />
+            <AdSlot size="300x250" placement="home-rail-2" />
+          </aside>
+        </section>
+      </Container>
+
+      <VideoSection main={home.videoMain} list={home.videoList} />
+
+      <Container>
+        {duniyaCategory ? (
+          <CategoryBlock
+            category={duniyaCategory}
+            lead={home.duniyaLead}
+            stories={home.duniyaList}
           >
-            Documentation
-          </a>
+            <AdSlot size="300x250" placement="home-rail-3" />
+          </CategoryBlock>
+        ) : null}
+
+        <BizGrid stories={home.bizGrid} />
+        <PhotoGalleryBento galleries={home.galleries} />
+        <RashifalGrid signs={home.rashiSigns} />
+
+        <div className="mb-10">
+          <ResponsiveAdSlot
+            mobile="320x100"
+            desktop="970x250"
+            placement="home-before-footer"
+          />
         </div>
-      </main>
-    </div>
+      </Container>
+    </SiteShell>
   );
 }

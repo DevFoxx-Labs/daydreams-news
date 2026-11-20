@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="hi"><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+body{width:1440px}
+.util{background:#f3f3f3;border-bottom:1px solid var(--line);font:500 13px M,Inter;color:var(--ink2)}
+.util .wrap{display:flex;justify-content:space-between;align-items:center;height:36px}
+.util .l,.util .r{display:flex;gap:20px;align-items:center}
+.util .r a{display:flex;gap:6px;align-items:center}
+.util .pill{border:1px solid #cfcfcf;border-radius:14px;padding:2px 10px;background:#fff}
+.mast .wrap{display:flex;align-items:center;justify-content:space-between;height:108px}
+.mast .ad{width:728px;height:90px}
+.mast .act{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.btn-sub{background:var(--red);color:#fff;font:700 15px M;padding:9px 18px;border-radius:4px}
+.epaper{display:flex;gap:8px;align-items:center;font:600 14px M}
+.epaper i{width:26px;height:32px;background:#fff;border:1px solid #ccc;box-shadow:2px 2px 0 #ddd;position:relative}
+.epaper i::before{content:"";position:absolute;left:4px;right:4px;top:5px;height:5px;background:var(--red)}
+nav.main{background:var(--red);position:relative}
+nav.main .wrap{display:flex;align-items:center;height:48px;gap:0}
+nav.main a{color:#fff;font:600 16.5px M;padding:0 13px;height:48px;display:flex;align-items:center}
+nav.main a.on{background:var(--red-d)}
+nav.main .home{font-size:20px;padding:0 16px}
+nav.main .sr{margin-left:auto;display:flex;gap:14px;align-items:center;color:#fff;font-size:20px}
+.ticker .wrap{display:flex;align-items:center;height:44px;border-bottom:1px solid var(--line)}
+.ticker .lab{background:var(--ink);color:#fff;font:800 15px M;height:30px;padding:0 14px;display:flex;align-items:center;gap:8px;margin-right:16px;position:relative}
+.ticker .lab::after{content:"";position:absolute;right:-10px;top:0;border-left:10px solid var(--ink);border-top:30px solid transparent}
+.ticker .items{display:flex;gap:30px;font:500 15.5px M;white-space:nowrap;overflow:hidden;flex:1}
+.ticker .items span::before{content:"●";color:var(--red);font-size:9px;margin-right:9px;vertical-align:3px}
+.tags .wrap{display:flex;gap:10px;align-items:center;padding:12px 0;font:600 14px M}
+.tags .t{color:var(--mut);margin-right:4px}
+.tags a{border:1px solid var(--line);border-radius:16px;padding:4px 12px;color:var(--ink2);background:#fafafa}
+.tags a b{color:var(--red)}
+
+.lead{display:grid;grid-template-columns:300px 1fr 330px;gap:26px;padding:10px 0 34px}
+.top h3{font:800 20px M;border-bottom:3px solid var(--red);padding-bottom:6px;margin-bottom:6px;display:flex;justify-content:space-between}
+.top h3 span{font:600 13px M;color:var(--red)}
+.trow{display:grid;grid-template-columns:1fr 96px;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.trow .h{font-size:16.5px}
+.trow [data-s]{height:64px;border-radius:4px}
+.hero [data-s]{height:420px;border-radius:6px}
+.hero .ov{position:absolute;left:0;right:0;bottom:0;padding:90px 26px 22px;background:linear-gradient(transparent,rgba(0,0,0,.85));z-index:2;color:#fff}
+.hero .ov .h{color:#fff;font-size:34px;line-height:1.22}
+.hero .ov .cat{color:#ffd0d6}
+.hero .ov p{font:400 16px/1.5 M;color:#e8e8e8;margin-top:8px}
+.hero .badge{position:absolute;top:16px;left:16px;z-index:2}
+.sub2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:18px}
+.card [data-s]{height:150px;border-radius:5px;margin-bottom:10px}
+.card .h{font-size:17.5px}
+.livebox{border:1px solid var(--line);border-top:3px solid var(--red);border-radius:4px;padding:14px 16px;margin-bottom:18px}
+.livebox .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.livebox .hd b{font:800 18px M}
+.lv{display:grid;grid-template-columns:54px 1fr;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line);position:relative}
+.lv:last-child{border:0}
+.lv .tm{font:700 13px Inter;color:var(--red)}
+.lv .h{font-size:15px;font-weight:600}
+.lv::before{content:"";position:absolute;left:44px;top:15px;width:7px;height:7px;border-radius:50%;background:var(--red)}
+.rad{width:300px;height:250px;margin:0 auto}
+
+.states{background:var(--soft);padding:18px 0;margin-bottom:34px}
+.states .wrap{display:flex;align-items:center;gap:10px}
+.states b{font:800 18px M;margin-right:10px;white-space:nowrap}
+.states a{background:#fff;border:1px solid #ddd;border-radius:4px;padding:7px 14px;font:600 15px M;white-space:nowrap}
+.states a.on{background:var(--red);color:#fff;border-color:var(--red)}
+
+.row2{display:grid;grid-template-columns:1fr 330px;gap:30px;margin-bottom:40px}
+.desh{display:grid;grid-template-columns:1.25fr 1fr;gap:22px}
+.big [data-s]{height:280px;border-radius:5px;margin-bottom:12px}
+.big .h{font-size:25px}
+.big p{font:400 16px/1.55 M;color:var(--ink2);margin-top:8px}
+.lst .it{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:0 0 12px;margin-bottom:12px;border-bottom:1px solid var(--line)}
+.lst .it [data-s]{height:76px;border-radius:4px}
+.lst .h{font-size:16px}
+.side h3{font:800 20px M;border-left:4px solid var(--red);padding-left:10px;margin-bottom:12px}
+.num{display:grid;grid-template-columns:38px 1fr;gap:6px;padding:10px 0;border-bottom:1px solid var(--line)}
+.num span{font:800 28px/1 Inter;color:#e3e3e3}
+.num .h{font-size:15.5px;font-weight:600}
+
+.stories{background:#111;padding:30px 0 34px;margin-bottom:40px}
+.stories .sechead{border-color:#444}
+.stories .sechead .more{color:#ff8a9a}
+.srow{display:grid;grid-template-columns:repeat(7,1fr);gap:14px}
+.st{height:300px;border-radius:10px;position:relative}
+.st .bars{position:absolute;top:8px;left:8px;right:8px;display:flex;gap:3px;z-index:2}.st .bars i{flex:1;height:2.5px;background:rgba(255,255,255,.5);border-radius:2px}
+.st .tx{position:absolute;bottom:0;left:0;right:0;padding:60px 12px 14px;background:linear-gradient(transparent,rgba(0,0,0,.9));color:#fff;font:700 16px/1.3 M;z-index:2}
+
+.three{display:grid;grid-template-columns:1fr 1fr 330px;gap:30px;margin-bottom:40px}
+.score{border:1px solid var(--line);border-radius:6px;padding:14px;margin-bottom:16px;background:linear-gradient(135deg,#0f1b33,#1d3461);color:#fff}
+.score .tp{display:flex;justify-content:space-between;font:600 12px M;color:#b9c6e4;margin-bottom:10px}
+.score .tm{display:flex;justify-content:space-between;align-items:center;padding:6px 0}
+.score .tm b{font:700 17px M;display:flex;gap:10px;align-items:center}
+.score .tm i{width:26px;height:18px;border-radius:2px;display:inline-block}
+.score .tm span{font:700 18px Inter}
+.score .st2{font:500 13px M;color:#ffd166;margin-top:6px}
+.mkt{border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:16px}
+.mkt div{display:flex;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--line);font:600 15px M}
+.mkt div:last-child{border:0}
+.up{color:#0a8f3d}.dn{color:#d0021b}
+.mkt small{font:500 13px Inter;margin-left:8px}
+
+.vid{background:var(--navy);padding:32px 0;margin-bottom:40px;color:#fff}
+.vid .sechead{border-color:#2d3c5e}.vid .sechead .more{color:#9fb3ff}
+.vg{display:grid;grid-template-columns:1.6fr 1fr;gap:24px}
+.vmain [data-s]{height:380px;border-radius:8px}
+.vmain .h{color:#fff;font-size:24px;margin-top:12px}
+.vmain [data-s]::after{content:"▶";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;background:rgba(200,16,46,.92);color:#fff;font:26px/76px Inter;text-align:center;z-index:2}
+.vl{display:grid;grid-template-columns:170px 1fr;gap:14px;margin-bottom:14px}
+.vl [data-s]{height:96px;border-radius:6px}
+.vl .h{color:#fff;font-size:16px}
+.vl .dur{position:absolute;right:6px;bottom:6px;background:rgba(0,0,0,.75);color:#fff;font:600 11px Inter;padding:2px 5px;border-radius:3px;z-index:2}
+
+.biz{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-bottom:40px}
+.gal{margin-bottom:40px}
+.gg{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:180px 180px;gap:10px}
+.gg [data-s]{border-radius:6px}.gg [data-s]:first-child{grid-row:span 2}
+.gg .cnt{position:absolute;right:10px;top:10px;background:rgba(0,0,0,.7);color:#fff;font:600 12px Inter;padding:3px 8px;border-radius:12px;z-index:2}
+.gg .cap{position:absolute;left:0;right:0;bottom:0;padding:40px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.8));color:#fff;font:700 18px M;z-index:2}
+.rashi{display:grid;grid-template-columns:repeat(12,1fr);gap:10px;margin-bottom:46px}
+.rashi div{border:1px solid var(--line);border-radius:8px;padding:14px 4px;text-align:center;font:600 15px M}
+.rashi i{display:block;font-style:normal;font-size:30px;color:var(--red);margin-bottom:4px;font-family:"DejaVu Sans"}
+footer{background:#141414;color:#ddd;padding:44px 0 24px}
+.fg{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:30px;padding-bottom:30px;border-bottom:1px solid #2c2c2c}
+footer h6{font:700 16px M;color:#fff;margin-bottom:12px}
+footer a{display:block;font:400 15px/2 M;color:#bdbdbd}
+footer p{font:400 15px/1.6 M;color:#aaa;margin:14px 0}
+.apps{display:flex;gap:10px}.apps span{border:1px solid #444;border-radius:6px;padding:7px 12px;font:600 12px Inter;color:#fff}
+.soc{display:flex;gap:10px;margin-top:14px}.soc span{width:36px;height:36px;border-radius:50%;background:#2a2a2a;display:flex;align-items:center;justify-content:center;font:700 13px Inter;color:#fff}
+.fb{display:flex;justify-content:space-between;padding-top:18px;font:400 13px M,Inter;color:#888}
+</style></head><body>
+
+<div class="util"><div class="wrap">
+  <div class="l"><span>शुक्रवार, 20 नवंबर 2026</span><span>☁ नई दिल्ली 18°C</span><span class="pill">AQI 212 · ख़राब</span></div>
+  <div class="r"><a>📰 ई-पेपर</a><a>▶ वीडियो</a><a>◧ वेब स्टोरीज़</a><a>🎧 पॉडकास्ट</a><a class="pill">English</a><a>👤 लॉग इन</a></div>
+</div></div>
+<div class="mast"><div class="wrap">
+  <div class="logo"><div class="mk">ख़</div><div class="wm">ख़बर सेतु<small>सच की ख़बर, सबसे पहले</small></div></div>
+  <div class="ad"><span>Advertisement</span><b>विज्ञापन · 728 × 90</b></div>
+  <div class="act"><a class="btn-sub">सब्सक्राइब करें</a><div class="epaper"><i></i>आज का ई-पेपर</div></div>
+</div></div>
+<nav class="main"><div class="wrap">
+  <a class="home on">⌂</a><a>देश</a><a>दुनिया</a><a>राज्य ▾</a><a>मनोरंजन</a><a>क्रिकेट</a><a>खेल</a><a>बिज़नेस</a><a>टेक</a><a>लाइफस्टाइल</a><a>धर्म</a><a>शिक्षा</a><a>नौकरी</a><a>ऑटो</a><a>ज्योतिष</a><a>और ▾</a>
+  <div class="sr"><span>⌕</span><span>☰</span></div>
+</div></nav>
+<div class="ticker"><div class="wrap"><div class="lab">⚡ ब्रेकिंग</div><div class="items">
+  <span>मौसम विभाग ने 5 राज्यों में घने कोहरे का अलर्ट जारी किया</span><span>दिल्ली मेट्रो की नई लाइन पर ट्रायल रन शुरू</span><span>बोर्ड परीक्षा की डेटशीट अगले हफ़्ते जारी होगी</span><span>सोने के दाम में लगातार तीसरे दिन गिरावट</span>
+</div></div></div>
+<div class="tags"><div class="wrap"><span class="t">ट्रेंडिंग:</span><a><b>#</b>मौसम अपडेट</a><a><b>#</b>दिल्ली प्रदूषण</a><a><b>#</b>क्रिकेट</a><a><b>#</b>शेयर बाज़ार</a><a><b>#</b>सरकारी नौकरी</a><a><b>#</b>बोर्ड परीक्षा 2027</a><a><b>#</b>सोना-चांदी</a><a><b>#</b>राशिफल</a></div></div>
+
+<div class="wrap">
+<section class="lead">
+  <div class="top"><h3>टॉप न्यूज़ <span>सभी →</span></h3>
+    <div class="trow"><div><span class="cat">देश</span><div class="h">रेलवे ने त्योहारों के लिए 200 स्पेशल ट्रेनें चलाने का ऐलान किया</div></div><div data-s="road"></div></div>
+    <div class="trow"><div><span class="cat">शिक्षा</span><div class="h">बोर्ड परीक्षा: छात्रों के लिए नई गाइडलाइन जारी, जानें बदलाव</div></div><div data-s="school"></div></div>
+    <div class="trow"><div><span class="cat">बिज़नेस</span><div class="h">बाज़ार में तेज़ी, निवेशकों की संपत्ति एक दिन में बढ़ी</div></div><div data-s="market"></div></div>
+    <div class="trow"><div><span class="cat">स्वास्थ्य</span><div class="h">सर्दियों में बढ़ रहे वायरल केस, डॉक्टरों ने दी ये सलाह</div></div><div data-s="hospital"></div></div>
+    <div class="trow" style="border:0"><div><span class="cat">टेक</span><div class="h">देश में बना नया चिप, अगले साल से फ़ोन में होगा इस्तेमाल</div></div><div data-s="tech"></div></div>
+  </div>
+  <div>
+    <div class="hero"><div data-s="rain"><span class="live badge">LIVE</span><div class="ov"><span class="cat">मौसम · लाइव अपडेट</span><div class="h">उत्तर भारत में कोहरे और ठंड का डबल अटैक, कई उड़ानें और ट्रेनें लेट</div><p>मौसम विभाग के मुताबिक अगले 48 घंटे तक राहत की उम्मीद नहीं। जानिए आपके शहर का हाल।</p></div></div></div>
+    <div class="sub2">
+      <div class="card"><div data-s="city"></div><span class="cat">दिल्ली-एनसीआर</span><div class="h">प्रदूषण पर सख़्ती: निर्माण कार्यों पर अस्थायी रोक, स्कूलों का समय बदला</div></div>
+      <div class="card"><div data-s="space"></div><span class="cat">विज्ञान</span><div class="h">अंतरिक्ष एजेंसी के नए मिशन की तैयारी पूरी, अगले महीने हो सकता है लॉन्च</div></div>
+    </div>
+  </div>
+  <div>
+    <div class="livebox"><div class="hd"><b>लाइव अपडेट</b><span class="live">LIVE</span></div>
+      <div class="lv"><span class="tm">12:58</span><div class="h">दिल्ली एयरपोर्ट पर 40 उड़ानें देरी से</div></div>
+      <div class="lv"><span class="tm">12:41</span><div class="h">यूपी के 18 ज़िलों में स्कूल 10 बजे से खुलेंगे</div></div>
+      <div class="lv"><span class="tm">12:20</span><div class="h">पंजाब-हरियाणा में विज़िबिलिटी 50 मीटर से कम</div></div>
+      <div class="lv"><span class="tm">11:55</span><div class="h">रेलवे ने 22 ट्रेनों का समय बदला, देखें लिस्ट</div></div>
+    </div>
+    <div class="ad rad"><span>Advertisement</span><b>विज्ञापन · 300 × 250</b></div>
+  </div>
+</section>
+</div>
+
+<div class="states"><div class="wrap"><b>अपने राज्य की ख़बरें</b><a class="on">उत्तर प्रदेश</a><a>बिहार</a><a>दिल्ली</a><a>मध्य प्रदेश</a><a>राजस्थान</a><a>हरियाणा</a><a>पंजाब</a><a>उत्तराखंड</a><a>झारखंड</a><a>हिमाचल</a><a>जम्मू-कश्मीर</a><a>छत्तीसगढ़</a></div></div>
+
+<div class="wrap">
+<section class="row2">
+  <div><div class="sechead"><h2>देश</h2><div class="sub"><b>सभी</b><span>राजनीति</span><span>रक्षा</span><span>रेलवे</span><span>कृषि</span></div><a class="more">और पढ़ें →</a></div>
+    <div class="desh">
+      <div class="big"><div data-s="farm"></div><span class="cat">कृषि</span><div class="h">रबी सीज़न में किसानों के लिए नई योजना, सीधे खाते में आएगी सहायता राशि</div><p>योजना के तहत छोटे और सीमांत किसानों को बीज और खाद के लिए आर्थिक मदद मिलेगी। आवेदन ऑनलाइन होंगे।</p><span class="time">2 घंटे पहले</span></div>
+      <div class="lst">
+        <div class="it"><div data-s="road"></div><div><span class="cat">इंफ्रा</span><div class="h">नया एक्सप्रेसवे जनवरी में खुलेगा, सफ़र 3 घंटे कम</div></div></div>
+        <div class="it"><div data-s="crowd"></div><div><span class="cat">समाज</span><div class="h">मेले में उमड़ी भीड़, प्रशासन ने किए खास इंतज़ाम</div></div></div>
+        <div class="it"><div data-s="hospital"></div><div><span class="cat">स्वास्थ्य</span><div class="h">ज़िला अस्पतालों में मुफ़्त जांच अभियान शुरू</div></div></div>
+        <div class="it" style="border:0"><div data-s="school"></div><div><span class="cat">शिक्षा</span><div class="h">सरकारी स्कूलों में स्मार्ट क्लास का दूसरा चरण</div></div></div>
+      </div>
+    </div></div>
+  <aside class="side"><h3>सबसे ज़्यादा पढ़ी गईं</h3>
+    <div class="num"><span>1</span><div class="h">पेंशन नियमों में बदलाव, जानिए आप पर क्या असर होगा</div></div>
+    <div class="num"><span>2</span><div class="h">आज का राशिफल: इन 4 राशियों के लिए शुभ दिन</div></div>
+    <div class="num"><span>3</span><div class="h">किसान योजना की अगली किस्त की तारीख़ तय</div></div>
+    <div class="num"><span>4</span><div class="h">सरकारी नौकरी: 12 हज़ार पदों पर भर्ती, ऐसे करें आवेदन</div></div>
+    <div class="num"><span>5</span><div class="h">सोना 2 हज़ार रुपये सस्ता, चांदी में भी गिरावट</div></div>
+    <div class="num" style="border:0"><span>6</span><div class="h">सर्दियों में ये 5 चीज़ें खाने से बढ़ेगी इम्युनिटी</div></div>
+  </aside>
+</section>
+</div>
+
+<section class="stories"><div class="wrap"><div class="sechead"><h2>वेब स्टोरीज़</h2><div class="sub"></div><a class="more">सभी देखें →</a></div>
+  <div class="srow">
+    <div class="st" data-s="hills"><div class="bars"><i></i><i></i><i></i><i></i></div><div class="tx">दिसंबर में घूमने के लिए 7 बेहतरीन हिल स्टेशन</div></div>
+    <div class="st" data-s="temple"><div class="bars"><i></i><i></i><i></i></div><div class="tx">देश के 5 प्राचीन मंदिर, जिनका इतिहास है अनोखा</div></div>
+    <div class="st" data-s="cricket"><div class="bars"><i></i><i></i><i></i><i></i></div><div class="tx">वनडे क्रिकेट के 6 सबसे बड़े रिकॉर्ड</div></div>
+    <div class="st" data-s="farm"><div class="bars"><i></i><i></i><i></i></div><div class="tx">सर्दियों में उगाएं ये 5 सब्ज़ियां</div></div>
+    <div class="st" data-s="space"><div class="bars"><i></i><i></i><i></i><i></i></div><div class="tx">अंतरिक्ष के 8 अनसुलझे रहस्य</div></div>
+    <div class="st" data-s="cinema"><div class="bars"><i></i><i></i><i></i></div><div class="tx">इस हफ़्ते OTT पर आ रहीं 6 नई फ़िल्में</div></div>
+    <div class="st" data-s="tech"><div class="bars"><i></i><i></i><i></i></div><div class="tx">फ़ोन की बैटरी बचाने के 7 आसान तरीके</div></div>
+  </div></div></section>
+
+<div class="wrap">
+<section class="three">
+  <div><div class="sechead"><h2>खेल</h2><div class="sub"></div><a class="more">और →</a></div>
+    <div class="score"><div class="tp"><span>दूसरा वनडे · सैंपल स्कोर</span><span class="live" style="font-size:10px">LIVE</span></div>
+      <div class="tm"><b><i style="background:linear-gradient(#ff9933 33%,#fff 33% 66%,#138808 66%)"></i>भारत</b><span>287/4 <small style="font-size:12px;color:#b9c6e4">(42.3)</small></span></div>
+      <div class="tm"><b><i style="background:#ffcd00"></i>विपक्षी टीम</b><span>—</span></div>
+      <div class="st2">भारत ने टॉस जीतकर बल्लेबाज़ी चुनी</div></div>
+    <div class="card"><div data-s="cricket" class="play"></div><span class="cat">क्रिकेट</span><div class="h">युवा बल्लेबाज़ का धमाकेदार शतक, टीम ने बनाया बड़ा स्कोर</div></div>
+  </div>
+  <div><div class="sechead"><h2>मनोरंजन</h2><div class="sub"></div><a class="more">और →</a></div>
+    <div class="card"><div data-s="cinema" style="height:220px"></div><span class="cat">बॉलीवुड</span><div class="h">इस शुक्रवार रिलीज़ हो रहीं 4 फ़िल्में, जानिए कौन-सी है ख़ास</div></div>
+    <div class="lst" style="margin-top:14px"><div class="it"><div data-s="crowd"></div><div><span class="cat">टीवी</span><div class="h">रियलिटी शो के फ़िनाले की तारीख़ का ऐलान</div></div></div><div class="it" style="border:0"><div data-s="cinema"></div><div><span class="cat">OTT</span><div class="h">नई वेब सीरीज़ का ट्रेलर रिलीज़</div></div></div></div>
+  </div>
+  <aside><div class="side"><h3>बाज़ार</h3></div>
+    <div class="mkt"><div><span>सेंसेक्स</span><span class="up">80,412 <small>▲ 0.74%</small></span></div><div><span>निफ़्टी</span><span class="up">24,310 <small>▲ 0.68%</small></span></div><div><span>सोना (10 ग्रा.)</span><span class="dn">₹76,250 <small>▼ 1.2%</small></span></div><div><span>चांदी (1 कि.)</span><span class="dn">₹89,100 <small>▼ 0.9%</small></span></div><div style="font:400 12px M;color:var(--mut)">डेमो आंकड़े · लाइव API से जोड़ें</div></div>
+    <div class="ad" style="height:250px"><span>Advertisement</span><b>विज्ञापन · 300 × 250</b></div></aside>
+</section>
+</div>
+
+<section class="vid"><div class="wrap"><div class="sechead"><h2>वीडियो</h2><div class="sub" style="color:#b9c6e4"><b style="color:#fff">सभी</b><span>न्यूज़</span><span>शॉर्ट्स</span><span>इंटरव्यू</span></div><a class="more">सभी वीडियो →</a></div>
+  <div class="vg"><div class="vmain"><div data-s="city"></div><div class="h">शहर की सड़कों पर कोहरे की चादर, देखिए सुबह का नज़ारा</div><span class="time" style="color:#9fb3d9">4:32 · 1 घंटा पहले</span></div>
+    <div><div class="vl"><div data-s="market"><span class="dur">2:15</span></div><div class="h">बाज़ार में आज क्या रहा ख़ास? 2 मिनट में समझिए</div></div>
+      <div class="vl"><div data-s="space"><span class="dur">5:40</span></div><div class="h">नए अंतरिक्ष मिशन की पूरी कहानी</div></div>
+      <div class="vl"><div data-s="farm"><span class="dur">3:05</span></div><div class="h">गांव के किसान ने ऐसे बढ़ाई आमदनी</div></div>
+      <div class="vl"><div data-s="road"><span class="dur">1:48</span></div><div class="h">नई इलेक्ट्रिक कार का फ़र्स्ट लुक</div></div></div></div>
+</div></section>
+
+<div class="wrap">
+<div class="sechead"><h2>बिज़नेस · टेक · ऑटो</h2><div class="sub"></div><a class="more">और →</a></div>
+<section class="biz">
+  <div class="card"><div data-s="market"></div><span class="cat">बिज़नेस</span><div class="h">छोटे निवेशकों के लिए नया नियम, SIP पर पड़ेगा असर</div><span class="time">45 मिनट पहले</span></div>
+  <div class="card"><div data-s="tech"></div><span class="cat">टेक</span><div class="h">इन स्मार्टफ़ोन में आएगा नया AI फ़ीचर, देखें लिस्ट</div><span class="time">1 घंटा पहले</span></div>
+  <div class="card"><div data-s="road"></div><span class="cat">ऑटो</span><div class="h">₹10 लाख से कम में आने वाली 5 नई SUV</div><span class="time">3 घंटे पहले</span></div>
+  <div class="card"><div data-s="school"></div><span class="cat">नौकरी</span><div class="h">बैंक भर्ती 2026: आवेदन की आख़िरी तारीख़ बढ़ी</div><span class="time">5 घंटे पहले</span></div>
+</section>
+
+<section class="gal"><div class="sechead"><h2>फ़ोटो गैलरी</h2><div class="sub"></div><a class="more">सभी →</a></div>
+  <div class="gg"><div data-s="hills"><span class="cnt">◧ 12</span><div class="cap">बर्फ़ से ढके पहाड़, तस्वीरों में देखें नज़ारा</div></div><div data-s="temple"><span class="cnt">◧ 8</span></div><div data-s="crowd"><span class="cnt">◧ 15</span></div><div data-s="cricket"><span class="cnt">◧ 10</span></div><div data-s="farm"><span class="cnt">◧ 6</span></div></div></section>
+
+<section><div class="sechead"><h2>आज का राशिफल</h2><div class="sub"></div><a class="more">विस्तार से →</a></div>
+  <div class="rashi"><div><i>♈</i>मेष</div><div><i>♉</i>वृषभ</div><div><i>♊</i>मिथुन</div><div><i>♋</i>कर्क</div><div><i>♌</i>सिंह</div><div><i>♍</i>कन्या</div><div><i>♎</i>तुला</div><div><i>♏</i>वृश्चिक</div><div><i>♐</i>धनु</div><div><i>♑</i>मकर</div><div><i>♒</i>कुंभ</div><div><i>♓</i>मीन</div></div></section>
+</div>
+
+<footer><div class="wrap">
+  <div class="fg"><div><div class="logo"><div class="mk">ख़</div><div class="wm" style="color:#fff">ख़बर सेतु</div></div><p>देश-दुनिया, आपके राज्य और शहर की हर ज़रूरी ख़बर — भरोसे के साथ, आपकी भाषा में।</p><div class="apps"><span>▶ Google Play</span><span> App Store</span></div><div class="soc"><span>f</span><span>X</span><span>in</span><span>▶</span><span>◎</span></div></div>
+    <div><h6>ख़बरें</h6><a>देश</a><a>दुनिया</a><a>राज्य</a><a>शहर</a><a>राजनीति</a></div>
+    <div><h6>खेल-मनोरंजन</h6><a>क्रिकेट</a><a>बॉलीवुड</a><a>OTT</a><a>टीवी</a><a>वेब स्टोरीज़</a></div>
+    <div><h6>काम की बात</h6><a>नौकरी</a><a>शिक्षा</a><a>बिज़नेस</a><a>टेक</a><a>ज्योतिष</a></div>
+    <div><h6>हमारे बारे में</h6><a>संपर्क करें</a><a>विज्ञापन दें</a><a>प्राइवेसी पॉलिसी</a><a>शर्तें</a><a>साइटमैप</a></div></div>
+  <div class="fb"><span>© 2026 ख़बर सेतु · सर्वाधिकार सुरक्षित</span><span>यह डिज़ाइन मॉकअप है — सभी ख़बरें और आंकड़े डेमो हैं</span></div>
+</div></footer>
+<script src="scenes.js"></script>
+</body></html>

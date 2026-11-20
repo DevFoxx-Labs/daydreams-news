@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local development data (consent ledger, privacy-request inbox)
+/.data/
+
+# screenshot output from scripts/screenshot.mjs
+/.screens/

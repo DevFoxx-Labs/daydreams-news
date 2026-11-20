@@ -12,7 +12,20 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Reference material shipped with the design kit — not our source.
+    "docs/**",
+    // Screenshot output from scripts/screenshot.mjs.
+    ".screens/**",
   ]),
+  {
+    rules: {
+      // `_name` marks a parameter that exists only to satisfy a signature.
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      ],
+    },
+  },
 ]);
 
 export default eslintConfig;
