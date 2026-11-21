@@ -13,6 +13,9 @@ import { listDemoAccounts } from "@/lib/admin/users";
 
 export const metadata: Metadata = { title: "यूज़र और रोल" };
 
+/** Personal to the signed-in user — no static shell, blocking is correct. */
+export const instant = false;
+
 type Row = {
   id: string;
   name: string;

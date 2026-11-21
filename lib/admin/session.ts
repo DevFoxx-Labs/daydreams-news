@@ -1,5 +1,6 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
+import { connection } from "next/server";
 
 import { findById } from "./users";
 import type { AdminUser } from "./rbac";
@@ -66,8 +67,17 @@ export function sessionConfigured(): boolean {
   return secret() !== null;
 }
 
-/** The signed-in user, or null. Reads the request cookie, so it is dynamic. */
+/**
+ * The signed-in user, or null.
+ *
+ * `connection()` first: verifying the session compares the expiry with
+ * `Date.now()`, and under Cache Components an unstable clock read in a
+ * prerender is an error (`blocking-prerender-current-time`). Awaiting the
+ * connection says what is actually true — the session can only be checked once
+ * there is a request — and moves the whole check to request time.
+ */
 export async function currentUser(): Promise<AdminUser | null> {
+  await connection();
   const store = await cookies();
   const userId = parseSessionValue(store.get(SESSION_COOKIE)?.value);
   if (!userId) return null;

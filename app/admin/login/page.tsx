@@ -83,6 +83,12 @@ async function LoginForm({
 }: {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
+  // Someone who already has a valid session has no business on this page.
+  // The check lives here, inside the <Suspense> boundary, rather than in the
+  // page body: reading the session is request-specific work, and keeping it
+  // behind the boundary lets the card, logo and heading prerender.
+  if (await currentUser()) redirect("/admin");
+
   const query = await searchParams;
   const error = typeof query.error === "string" ? query.error : undefined;
   const ready = sessionConfigured() && devUsersEnabled();
@@ -158,9 +164,7 @@ async function LoginForm({
   );
 }
 
-export default async function AdminLoginPage({ searchParams }: PageProps<"/admin/login">) {
-  if (await currentUser()) redirect("/admin");
-
+export default function AdminLoginPage({ searchParams }: PageProps<"/admin/login">) {
   return (
     <main className="flex min-h-screen items-center justify-center bg-background px-4 py-10">
       <div className="w-full max-w-[380px]">

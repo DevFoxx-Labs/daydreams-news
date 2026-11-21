@@ -16,6 +16,9 @@ import { states } from "@/lib/data/states";
 
 export const metadata: Metadata = { title: "कवरेज" };
 
+/** Personal to the signed-in user — no static shell, blocking is correct. */
+export const instant = false;
+
 type Row = {
   id: string;
   name: string;

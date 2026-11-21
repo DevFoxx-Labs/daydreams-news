@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useState, useSyncExternalStore } from "react";
 
 /**
  * Tiny external store for values that live in cookies or localStorage.
@@ -56,4 +56,43 @@ export function useClientStore<T>(store: ClientStore<T>): T {
     store.getSnapshot,
     store.getServerSnapshot,
   );
+}
+
+const ALWAYS_FALSE = () => false;
+
+/** One mount flag per component instance, flipped when React subscribes. */
+function createMountStore() {
+  const listeners = new Set<() => void>();
+  let mounted = false;
+
+  return {
+    subscribe(listener: () => void) {
+      listeners.add(listener);
+      if (!mounted) {
+        mounted = true;
+        for (const notify of listeners) notify();
+      }
+      return () => {
+        listeners.delete(listener);
+      };
+    },
+    getSnapshot: () => mounted,
+  };
+}
+
+/**
+ * `false` on the server **and on the hydration render**, `true` from the first
+ * render after this component mounted.
+ *
+ * Why this exists rather than reading a store value directly: a component
+ * inside a `<Suspense>` boundary can hydrate *after* an unrelated store has
+ * already swapped in its browser value (the provider above the boundary
+ * hydrates first). The boundary's render then produces more markup than the
+ * server sent, and React reports a hydration mismatch. Gating on a flag that
+ * is always `false` during hydration keeps the two renders identical, and the
+ * real value is applied in the commit right after.
+ */
+export function useHasMounted(): boolean {
+  const [store] = useState(createMountStore);
+  return useSyncExternalStore(store.subscribe, store.getSnapshot, ALWAYS_FALSE);
 }

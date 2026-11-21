@@ -27,6 +27,9 @@ import { rupees } from "@/lib/format/number";
 
 export const metadata: Metadata = { title: "कमाई और भुगतान" };
 
+/** Personal to the signed-in user — no static shell, blocking is correct. */
+export const instant = false;
+
 const STATUS: Record<Filing["status"], { label: string; tone: "success" | "active" | "warning" | "danger" | "pending" }> =
   {
     filed: { label: "भेजी गई", tone: "pending" },

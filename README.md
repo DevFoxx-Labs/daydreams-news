@@ -31,6 +31,10 @@ Responsive check (the dev or production server must be running):
 ```bash
 BASE_URL=http://localhost:3000 ROUTE=/ node scripts/screenshot.mjs home 360,390,768,1024,1280,1440,1920
 ROUTE=/ node scripts/overflow.mjs 360     # which element causes horizontal scroll
+
+# hydration / console-error check (fresh profile, so the cookie banner is shown)
+ROUTES=/,/search node scripts/hydration-check.mjs
+AS_USER=u-desk ROUTES=/admin,/admin/stories node scripts/hydration-check.mjs
 ```
 
 ## Documentation

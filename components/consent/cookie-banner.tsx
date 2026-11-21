@@ -15,6 +15,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { useHasMounted } from "@/lib/client-store";
 import { OPTIONAL_PURPOSES, type ConsentState } from "@/lib/consent/types";
 import { t } from "@/lib/i18n";
 
@@ -66,9 +67,15 @@ export function CookieBanner() {
   // cover the sidebar there.
   const isAdmin = usePathname().startsWith("/admin");
 
+  // This component sits in its own <Suspense> boundary (it reads the path), so
+  // the boundary can hydrate after ConsentProvider has already swapped in the
+  // stored choice. Without the mount gate the hydration render would draw the
+  // banner that the server HTML does not contain → hydration mismatch.
+  const mounted = useHasMounted();
+
   // Rendered only after hydration, so a reader who already chose never sees
   // the banner flash.
-  const showBanner = hydrated && !decided && !isAdmin;
+  const showBanner = mounted && hydrated && !decided && !isAdmin;
 
   return (
     <>

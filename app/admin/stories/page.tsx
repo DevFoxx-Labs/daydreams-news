@@ -35,6 +35,9 @@ export const metadata: Metadata = {
   title: "ख़बरें",
 };
 
+/** Personal to the signed-in user — no static shell, blocking is correct. */
+export const instant = false;
+
 const STATUS_TONE: Record<WorkflowStatus, StatusTone> = {
   assigned: "neutral",
   draft: "neutral",

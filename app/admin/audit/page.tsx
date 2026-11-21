@@ -15,6 +15,9 @@ import { SENSITIVE_PERMISSIONS } from "@/lib/admin/rbac";
 
 export const metadata: Metadata = { title: "ऑडिट लॉग" };
 
+/** Personal to the signed-in user — no static shell, blocking is correct. */
+export const instant = false;
+
 const columns: Column<AuditEntry>[] = [
   {
     id: "action",

@@ -88,8 +88,11 @@ touching any panel UI. Project specifics:
 - **Fail closed:** no `ADMIN_SESSION_SECRET` (32+ chars) or `ADMIN_DEV_PASSWORD` (8+)
   means sign-in is refused, and in production the demo accounts additionally need
   `ADMIN_ALLOW_DEV_USERS=true`. Never add a default password.
-- The panel is `noindex`, blocks (`instant = false`) because every screen is personal,
-  and shows no reader-facing cookie banner.
+- The panel is `noindex` and shows no reader-facing cookie banner. Every screen is
+  personal, so each `app/admin/**/page.tsx` declares `export const instant = false` —
+  the layout's copy does not relax validation for the pages below it. A session read
+  (`requireUser()` / `currentUser()`) blocks the route; `/admin/login` keeps its check
+  inside `<Suspense>` so the sign-in card still prerenders.
 
 ## 5. Performance (Core Web Vitals)
 
@@ -102,7 +105,10 @@ touching any panel UI. Project specifics:
 - Data access is cached with `use cache` + an explicit `cacheLife`: `minutes` for home and
   lists (60 s revalidate, FR-G6), `days` + `cacheTag('story-<id>')` for articles.
 - Anything reading `searchParams`, cookies or `usePathname()` sits inside `<Suspense>` with
-  a same-height fallback, so the rest of the route still prerenders.
+  a same-height fallback, so the rest of the route still prerenders. Inside such a
+  boundary, never decide *whether to render* from a store value that changes on
+  hydration — the boundary can hydrate after a provider above it has already updated,
+  and React reports a mismatch. Gate on `useHasMounted()` (`lib/client-store.ts`).
 - Never call `Date.now()`/`new Date()`/`Math.random()` in the prerendered shell — the demo
   clock (`lib/data/clock.ts`) exists for this reason.
 

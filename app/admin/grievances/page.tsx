@@ -20,6 +20,9 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = { title: "शिकायत निवारण" };
 
+/** Personal to the signed-in user — no static shell, blocking is correct. */
+export const instant = false;
+
 const TYPE_LABEL: Record<Grievance["type"], string> = {
   access: "जानकारी देखें",
   correction: "सुधार",

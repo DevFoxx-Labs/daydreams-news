@@ -4,6 +4,61 @@ Newest first. One entry per task; entries are never rewritten.
 
 ---
 
+## 2026-11-21 — Fix: cookie-banner hydration mismatch + Cache Components insights on the panel
+
+**Scope:** a reported hydration error on the homepage, and the two dev-overlay
+insights it uncovered on `/admin`. No feature or UI change — the banner, the
+panel and the consent ledger behave exactly as before.
+
+### Fixed
+
+- **Hydration mismatch in `components/consent/cookie-banner.tsx`.** The banner sits
+  in its own `<Suspense>` boundary (it reads `usePathname()` to stay off `/admin`),
+  while `ConsentProvider` sits above it in the root layout. The provider hydrates
+  first, so by the time the boundary hydrated the consent store had already swapped
+  in the browser value: the hydration render drew a banner the server HTML did not
+  contain, and React discarded and re-rendered the tree.
+  New `useHasMounted()` in `lib/client-store.ts` — a per-instance flag that is
+  `false` on the server **and** on the hydration render — gates the banner, so both
+  renders agree and the real value is applied in the commit right after.
+- **`blocking-prerender-current-time` on `/admin/login`.** `currentUser()` compared
+  the session expiry with `Date.now()` during a prerender. It now `await`s
+  `connection()` first (`lib/admin/session.ts`), which states the truth: a session
+  can only be verified once there is a request.
+- **`blocking-prerender-dynamic` on every panel route.** `instant = false` on
+  `app/admin/layout.tsx` does not relax validation for the page segments below it —
+  Cache Components validates each page on its own — so every `app/admin/*/page.tsx`
+  now declares it, with a one-line reason. On `/admin/login` the session check moved
+  inside the existing `<Suspense>` boundary instead, so the sign-in card, logo and
+  heading prerender; the route went from dynamic (ƒ) to partially prerendered (◐).
+
+### Added
+
+- **`scripts/hydration-check.mjs`** — loads routes at 390 and 1440 px with a fresh
+  profile (no stored consent, so the banner is in its "must appear" state) and exits
+  non-zero on any console error, page error or hydration warning. `AS_USER=u-desk`
+  signs the panel session cookie locally instead of posting the login form, so
+  checking every screen does not eat into the sign-in rate limit.
+- A Next-App-Router note in `~/.claude/skills/admin-panel-design/SKILL.md`: panel
+  pages need `instant = false` per page segment, and a session read outside
+  `<Suspense>` blocks the whole route.
+
+### Verified
+
+| Check | Command | Result |
+|---|---|---|
+| Types | `npx tsc --noEmit` | clean |
+| Lint | `npx eslint .` | 0 errors, 0 warnings |
+| Tests | `npx vitest run` | 67 passed (5 files) |
+| Build | `npx next build` | 323 static pages; `/admin/*` dynamic, `/admin/login` now ◐ |
+| Reader hydration | `ROUTES=/,/tag/mausam,/search,/desh/…-1001,/rashifal,/photos node scripts/hydration-check.mjs` | 12 loads, 0 px overflow, **no console or hydration errors** (banner present on all 6 routes) |
+| Panel hydration | same script with `AS_USER=u-admin` / `u-bureau` / `u-stringer` over all 9 panel routes | 0 px overflow, **no console or hydration errors** |
+
+Not covered: the check runs against `next dev`, where these insights surface. It is
+run by hand — wiring it into CI is still gap G13.
+
+---
+
 ## 2026-11-21 — Newsroom admin panel (`/admin`) + global admin-panel design standard
 
 **Scope:** the panel shell, RBAC, sign-in and the phase-1 dashboards from

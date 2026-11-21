@@ -11,6 +11,9 @@ import { permissionsOf, ROLE_META, scopeLabel } from "@/lib/admin/rbac";
 
 export const metadata: Metadata = { title: "मेरा प्रोफ़ाइल" };
 
+/** Personal to the signed-in user — no static shell, blocking is correct. */
+export const instant = false;
+
 export default async function AdminProfilePage() {
   const user = await requireUser();
   const chrome = shellChrome(user);

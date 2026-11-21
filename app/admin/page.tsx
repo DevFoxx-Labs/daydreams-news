@@ -23,6 +23,14 @@ export const metadata: Metadata = {
   title: "डैशबोर्ड",
 };
 
+/**
+ * Every panel screen is personal: the role decides the whole page, so there is
+ * no useful static shell to prerender and the route is allowed to block while
+ * the session is verified. The admin layout declares this too, but Cache
+ * Components validates each page segment on its own.
+ */
+export const instant = false;
+
 function dashboardFor(user: AdminUser) {
   switch (user.role) {
     case "desk_editor":
