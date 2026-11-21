@@ -158,7 +158,7 @@ function BlockView({
             sizes="(max-width: 1023px) 100vw, 800px"
           />
           {block.media.caption ? (
-            <figcaption className="mt-2 text-[14px] text-muted">
+            <figcaption className="mt-2 text-[14px] text-meta">
               {block.media.caption}
               {block.media.isAiGenerated
                 ? ` ${t.common.aiImage}`
@@ -176,7 +176,7 @@ function BlockView({
         <blockquote className="border-b border-line border-t-[3px] border-t-brand py-5 text-[22px] font-bold leading-[1.45] text-brand-dark lg:text-[26px]">
           “{block.text}”
           {block.attribution ? (
-            <footer className="mt-2 text-[15px] font-medium text-muted">
+            <footer className="mt-2 text-[15px] font-medium text-meta">
               {block.attribution}
             </footer>
           ) : null}

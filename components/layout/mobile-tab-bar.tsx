@@ -54,7 +54,7 @@ export function MobileTabBar() {
             aria-current={active ? "page" : undefined}
             className={cn(
               "flex min-h-11 flex-col items-center gap-0.5 text-[11px] font-semibold",
-              active ? "text-brand" : "text-muted",
+              active ? "text-brand" : "text-meta",
             )}
           >
             <HugeiconsIcon

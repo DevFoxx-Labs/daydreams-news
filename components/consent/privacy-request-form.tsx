@@ -82,7 +82,7 @@ export function PrivacyRequestForm() {
             Ticket: <b>{ticket}</b>
           </p>
         ) : null}
-        <p className="mt-2 text-[14px] text-muted">{t.rights.boardNote}</p>
+        <p className="mt-2 text-[14px] text-meta">{t.rights.boardNote}</p>
       </div>
     );
   }
@@ -146,7 +146,7 @@ export function PrivacyRequestForm() {
       <Button type="submit" variant="brand" size="lg" disabled={state === "sending"}>
         {t.rights.submit}
       </Button>
-      <p className="text-[13px] text-muted">{t.rights.boardNote}</p>
+      <p className="text-[13px] text-meta">{t.rights.boardNote}</p>
     </form>
   );
 }

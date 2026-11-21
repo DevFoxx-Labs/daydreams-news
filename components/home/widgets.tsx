@@ -217,7 +217,7 @@ export function MarketWidget({ result }: { result: ServiceResult<Market> }) {
             </div>
           );
         })}
-        <p className="flex flex-wrap items-center gap-2 px-3.5 py-2 text-[12px] text-muted">
+        <p className="flex flex-wrap items-center gap-2 px-3.5 py-2 text-[12px] text-meta">
           {isDemo ? <DemoLabel /> : null}
           <span>
             {t.widgets.marketDelay} · {t.common.updatedAt} {istClock(updatedAt)}

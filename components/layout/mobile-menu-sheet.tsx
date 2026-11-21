@@ -75,13 +75,13 @@ export function MobileMenuSheet({
           <Link
             href="/search"
             onClick={() => setOpen(false)}
-            className="my-3.5 flex items-center gap-2 rounded-[8px] border border-[#ddd] px-3.5 py-3 text-[15px] text-muted"
+            className="my-3.5 flex items-center gap-2 rounded-[8px] border border-[#ddd] px-3.5 py-3 text-[15px] text-meta"
           >
             <HugeiconsIcon icon={Search01Icon} size={18} strokeWidth={1.8} />
             {t.common.searchPlaceholder}
           </Link>
 
-          <h3 className="mb-1.5 mt-2.5 text-[13px] font-extrabold tracking-[0.5px] text-muted">
+          <h3 className="mb-1.5 mt-2.5 text-[13px] font-extrabold tracking-[0.5px] text-meta">
             {t.nav.chooseState}
           </h3>
           <div className="grid grid-cols-3 gap-2">
@@ -110,7 +110,7 @@ export function MobileMenuSheet({
             {t.common.readMore}
           </Link>
 
-          <h3 className="mb-1.5 mt-5 text-[13px] font-extrabold tracking-[0.5px] text-muted">
+          <h3 className="mb-1.5 mt-5 text-[13px] font-extrabold tracking-[0.5px] text-meta">
             {t.nav.categories}
           </h3>
           <ul>
@@ -126,7 +126,7 @@ export function MobileMenuSheet({
                     icon={ArrowRight01Icon}
                     size={18}
                     strokeWidth={2}
-                    className="text-muted"
+                    className="text-meta"
                     aria-hidden="true"
                   />
                 </Link>
@@ -149,7 +149,7 @@ export function MobileMenuSheet({
             ) : null}
           </div>
 
-          <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-[13.5px] text-muted">
+          <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-[13.5px] text-meta">
             <Link href="/about">{t.legal.about}</Link>
             <Link href="/privacy">{t.legal.privacy}</Link>
             <Link href="/consent">{t.legal.consent}</Link>

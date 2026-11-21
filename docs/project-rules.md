@@ -63,6 +63,34 @@ Source of truth for *what* to build: `docs/PRD.md`. For *how it looks*:
 - shadcn-style primitives live in `components/ui/*`, restyled to the tokens; news-specific
   components in `components/news/*`, `components/home/*`, `components/article/*`.
 
+## 4a. Admin panel (`/admin`)
+
+Follows the global **`admin-panel-design`** standard — load that skill before
+touching any panel UI. Project specifics:
+
+- **Design:** dark sidebar in both themes (`bg-sidebar`), `w-56` / `w-14` collapsed with
+  tooltips, sticky topbar (toggle · title + role subtitle · date · theme · bell · user
+  menu), `rounded-xl border-border bg-card` content, fixed bottom tab bar on mobile built
+  from the same nav config. Tokens live in `app/globals.css` under the admin block; the
+  reader-site palette above it is untouched.
+- **Navigation is data:** `lib/admin/nav.ts` is the single source of every menu. A route
+  not in `IMPLEMENTED_ROUTES` renders as a non-linked button — never a dead link.
+- **Roles:** `lib/admin/rbac.ts` holds roles, permissions and scopes
+  (`global | desk | state | district | own`). Dashboards are specified in
+  `docs/ROLES_AND_DASHBOARDS.md` §7 — one work queue, ≤5 KPI tiles, one primary button.
+- **Authorization:** every page calls `requireUser()` / `requirePermission()` from
+  `lib/admin/guard.ts`, and record-level checks use `allow(user, permission, record)`.
+  Query by scope (pass the user's state/district into the query) rather than filtering
+  in the component. Hiding a link is never the authorization.
+- **Boundaries that live in code, not policy:** ad sales can never edit a story; the
+  consent ledger and audit log are append-only for everyone including admin; no shared
+  logins. Each is covered by a test in `tests/admin-rbac.test.ts`.
+- **Fail closed:** no `ADMIN_SESSION_SECRET` (32+ chars) or `ADMIN_DEV_PASSWORD` (8+)
+  means sign-in is refused, and in production the demo accounts additionally need
+  `ADMIN_ALLOW_DEV_USERS=true`. Never add a default password.
+- The panel is `noindex`, blocks (`instant = false`) because every screen is personal,
+  and shows no reader-facing cookie banner.
+
 ## 5. Performance (Core Web Vitals)
 
 - The LCP element is server-rendered. Only the hero image gets `priority`; everything else

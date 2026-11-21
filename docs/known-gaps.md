@@ -18,6 +18,10 @@ Last updated: 20 Nov 2026 (reader site M0–M6).
 | G5 | Rate limiting is per-instance | `lib/rate-limit.ts` | In-memory buckets reset on deploy and don't apply across instances, so the limits are weaker than they look behind a load balancer. | Redis/Upstash-backed limiter before launch. |
 | G6 | No CSP or security headers | `next.config.ts` | No `Content-Security-Policy`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy` or HSTS. | Add headers (nonce-based CSP) in the hardening milestone (PRD M9). |
 | G7 | No CMS | — | Everything is mock data; editors can't publish. PRD M7. | Payload CMS with the collections in PRD §7, writing through the same `lib/cms` interface. |
+| G24 | **No MFA on the panel** | `lib/admin/users.ts`, `app/admin/login` | Editors and admins can sign in with a password alone. The global security rule requires MFA on every admin sign-in path. | TOTP enrolment + verification step in the CMS milestone; block privileged roles until enrolled. |
+| G25 | Panel accounts are in memory | `lib/admin/users.ts` | Seven demo accounts generated from `ADMIN_DEV_PASSWORD`; no real user table, password reset, lockout or device list. | CMS `users` table with per-user hashes, reset flow and session revocation. |
+| G26 | Panel is read-only | `app/admin/stories` | Triage and review are visible but nothing can be edited, published, spiked or assigned from the panel yet. | Wire the write path with the CMS; each mutation needs an audit row and a toast. |
+| G27 | Audit log is mock data | `lib/admin/newsroom.ts` | The screen is real, the rows are seeded; actions taken in the panel don't write to it. | `audit_log` table written by every mutation, append-only, with before/after. |
 
 ## 🟠 Fix before scale
 
@@ -31,6 +35,7 @@ Last updated: 20 Nov 2026 (reader site M0–M6).
 | G13 | No E2E/visual regression in CI | `scripts/screenshot.mjs` | Responsive and overflow checks are run by hand. | Playwright test project + Lighthouse CI budget gate (PRD M9). |
 | G14 | Sub-category tabs reload | `components/home/sections.tsx` | Home sub-category links navigate instead of filtering on the client (FR-H5 asks for client filtering). | Move to the shadcn Tabs already in `components/ui/tabs.tsx` with prefetched data. |
 | G15 | Follow box hidden | `components/article/parts.tsx` | The navy "Google News / WhatsApp" box in reference 02 does not render because no channel URLs are configured — placeholder links would be worse. | Owner supplies the URLs (`docs/owner-todo.md`), box appears automatically. |
+| G28 | Panel data is derived, not editorial truth | `lib/admin/newsroom.ts` | Queue status, waiting times and filings are derived deterministically from the mock stories, so the numbers are plausible but not real. | Replaced wholesale by CMS queries; the function signatures are the contract. |
 | G16 | Single sitemap file | `app/sitemap.ts` | All URLs in one file; fine now, breaks past ~10k URLs. | Split with `generateSitemaps()` per month once the archive grows. |
 
 ## 🟡 Nice to have

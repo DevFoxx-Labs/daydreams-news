@@ -85,7 +85,7 @@ export function ConsentSettings() {
                     <span
                       className={cn(
                         "text-[13px] font-semibold",
-                        checked ? "text-up" : "text-muted",
+                        checked ? "text-up" : "text-meta",
                       )}
                     >
                       {checked ? t.consent.granted : t.consent.denied}
@@ -118,7 +118,7 @@ export function ConsentSettings() {
           {t.consent.history}
         </h2>
         {history.length === 0 ? (
-          <p className="text-[15px] text-muted">{t.consent.historyEmpty}</p>
+          <p className="text-[15px] text-meta">{t.consent.historyEmpty}</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-[14px]">
@@ -166,7 +166,7 @@ export function ConsentSettings() {
             </table>
           </div>
         )}
-        <p className="mt-2 text-[13px] text-muted">
+        <p className="mt-2 text-[13px] text-meta">
           यह इतिहास इसी डिवाइस का है। हमारे सर्वर पर भी हर सहमति का रिकॉर्ड
           सुरक्षित रखा जाता है।
         </p>

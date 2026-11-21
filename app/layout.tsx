@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 import { Inter, Mukta } from "next/font/google";
 
 import { CookieBanner } from "@/components/consent/cookie-banner";
@@ -74,7 +75,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             {t.common.skipToContent}
           </a>
           {children}
-          <CookieBanner />
+          {/*
+            The banner reads the pathname (it stays out of the staff panel),
+            which is request-time data on routes whose path isn't known at
+            build time. A null fallback costs nothing: it only ever appears
+            after hydration anyway.
+          */}
+          <Suspense fallback={null}>
+            <CookieBanner />
+          </Suspense>
           <ConsentScripts />
         </ConsentProvider>
       </body>

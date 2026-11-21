@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { useConsent } from "@/components/consent/consent-provider";
@@ -60,9 +61,14 @@ export function CookieBanner() {
     personalisation: edits?.personalisation ?? consent?.personalisation ?? false,
   };
 
+  // The newsroom panel is a staff tool behind a login, not a public page, and
+  // it loads no third-party scripts — the reader-facing banner would only
+  // cover the sidebar there.
+  const isAdmin = usePathname().startsWith("/admin");
+
   // Rendered only after hydration, so a reader who already chose never sees
   // the banner flash.
-  const showBanner = hydrated && !decided;
+  const showBanner = hydrated && !decided && !isAdmin;
 
   return (
     <>

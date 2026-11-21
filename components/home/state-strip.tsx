@@ -110,9 +110,9 @@ export function StateStrip({
 
       <Container className="pt-4">
         {error ? (
-          <p className="text-[15px] text-muted">{t.home.stateEmpty}</p>
+          <p className="text-[15px] text-meta">{t.home.stateEmpty}</p>
         ) : stories.length === 0 ? (
-          <p className="text-[15px] text-muted">{t.home.stateEmpty}</p>
+          <p className="text-[15px] text-meta">{t.home.stateEmpty}</p>
         ) : (
           <ul
             aria-busy={pending}

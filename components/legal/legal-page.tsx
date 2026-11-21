@@ -33,7 +33,7 @@ export function LegalPage({ slug }: { slug: LegalSlug }) {
         <p className="mb-2 text-[16px] leading-[1.6] text-ink-2">
           {notice.summary}
         </p>
-        <p className="mb-6 text-[13.5px] text-muted">
+        <p className="mb-6 text-[13.5px] text-meta">
           {t.legal.version} {notice.version} · {t.legal.lastUpdated}{" "}
           {hindiDate(`${notice.lastUpdated}T00:00:00+05:30`)}
         </p>

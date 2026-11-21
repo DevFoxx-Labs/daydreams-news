@@ -5,6 +5,44 @@ Nothing here is ticked off without the owner's confirmation.
 
 ---
 
+## 2026-11-21 — the newsroom panel is live locally
+
+- [ ] **Set the panel secrets** before anyone else uses it (see `.env.example`):
+      `ADMIN_SESSION_SECRET` (32+ random characters) and `ADMIN_DEV_PASSWORD` (8+).
+      Without them the panel refuses every sign-in, which is deliberate.
+- [ ] **Never set `ADMIN_ALLOW_DEV_USERS=true` on a public deployment.** The seven demo
+      accounts share one password; they exist so each role's dashboard can be reviewed.
+- [ ] Decide **who gets which role and scope** (which state for each bureau chief, which
+      district for each stringer) — that list becomes the first real `users` table.
+- [ ] MFA is not implemented yet (gap G24). Until it is, treat the panel as
+      local/staging only, or put it behind a VPN / IP allow-list.
+- [ ] Confirm the **stringer rate** shown on the earnings screen (₹250 per accepted
+      story is a placeholder) and the monthly payout date.
+
+---
+
+## 2026-11-21 — decisions needed before the newsroom panels (M7)
+
+From `docs/ROLES_AND_DASHBOARDS.md` §12. Each one changes what gets built, so they are
+cheap to answer now and expensive to change later.
+
+- [ ] **Launch states and districts** — sets the stringer count, the bureau structure and
+      the coverage-gap thresholds.
+- [ ] **Stringer commercial model**: per story, per *accepted* story, or retainer +
+      incentive? The payout module is built differently for each.
+- [ ] **Named Grievance Officer** — does the Editor-in-Chief hold it, or legal? (Also on
+      the 2026-11-20 list; the panel work now depends on it.)
+- [ ] **24×7 desk or 6 a.m.–midnight** at launch — decides the shift model, the handover
+      feature and the desk headcount.
+- [ ] **Is sponsored content sold in v1?** If yes, the labelled workflow and ad-ops
+      creative QC move from phase 3 to phase 1.
+- [ ] **Payout approval threshold** and who the second approver is.
+- [ ] **Confirm "buy, don't build" for HR/payroll and the sales CRM** (report §10).
+- [ ] **Citizen contributions ("आपकी ख़बर") — yes or no.** My recommendation is no for the
+      first year: it is a 24×7 moderation and legal commitment.
+
+---
+
 ## 2026-11-20 — after the reader-site build (M0–M6)
 
 ### Legal & compliance (blocks launch)

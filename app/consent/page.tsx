@@ -35,7 +35,7 @@ export default function ConsentPage() {
           </Link>{" "}
           भी पढ़ें।
         </p>
-        <p className="mb-8 font-ui text-[12.5px] text-muted">
+        <p className="mb-8 font-ui text-[12.5px] text-meta">
           {t.consent.noticeVersion}: {NOTICE_VERSION_STRING}
         </p>
 

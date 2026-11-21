@@ -38,7 +38,7 @@ export default async function StatesIndexPage() {
                   <li key={city.slug}>
                     <Link
                       href={stateHref(state.slug, city.slug)}
-                      className="text-[14px] text-muted hover:text-brand"
+                      className="text-[14px] text-meta hover:text-brand"
                     >
                       {city.name}
                     </Link>

@@ -101,7 +101,7 @@ export function MainNav({
                       <li key={city.slug}>
                         <Link
                           href={stateHref(state.slug, city.slug)}
-                          className="text-[13.5px] text-muted hover:text-brand"
+                          className="text-[13.5px] text-meta hover:text-brand"
                         >
                           {city.name}
                         </Link>

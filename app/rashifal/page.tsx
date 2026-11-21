@@ -26,7 +26,7 @@ export default async function RashifalPage() {
     <SiteShell variant="full">
       <Container className="pt-5">
         <SectionHeader title={t.home.rashifal} as="h1" />
-        <p className="mb-5 text-[15px] text-muted">
+        <p className="mb-5 text-[15px] text-meta">
           {hindiLongDate(MOCK_NOW_ISO)}
         </p>
         <ul className="grid grid-cols-2 gap-4 pb-10 sm:grid-cols-3 lg:grid-cols-4">
@@ -43,7 +43,7 @@ export default async function RashifalPage() {
                   {sign.glyph}
                 </span>
                 <h2 className="text-[17px] font-bold">{sign.name}</h2>
-                <p className="text-[13px] text-muted">{sign.dates}</p>
+                <p className="text-[13px] text-meta">{sign.dates}</p>
                 <p className="clamp-3 mt-2 text-[14.5px] leading-[1.55] text-ink-2">
                   {sign.today}
                 </p>

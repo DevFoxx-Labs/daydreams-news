@@ -25,7 +25,7 @@ export default function EpaperPage() {
     <SiteShell variant="full">
       <Container className="max-w-[720px] pb-12 pt-5">
         <SectionHeader title={t.common.epaper} as="h1" />
-        <p className="mb-3 text-[15px] text-muted">{hindiLongDate(MOCK_NOW_ISO)}</p>
+        <p className="mb-3 text-[15px] text-meta">{hindiLongDate(MOCK_NOW_ISO)}</p>
         <p className="text-[16px] leading-[1.7] text-ink-2">
           ई-पेपर अभी तैयार किया जा रहा है। संस्करण और शहर चुनकर पन्ने पढ़ने की
           सुविधा लॉन्च के बाद यहीं मिलेगी। तब तक ताज़ा ख़बरें होम पेज पर पढ़ें।

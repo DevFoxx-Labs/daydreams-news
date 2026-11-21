@@ -146,7 +146,7 @@ export function SponsoredLabel({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        "inline-block rounded-[3px] bg-soft px-2 py-[2px] text-[12px] font-bold text-muted",
+        "inline-block rounded-[3px] bg-soft px-2 py-[2px] text-[12px] font-bold text-meta",
         className,
       )}
     >
@@ -160,7 +160,7 @@ export function DemoLabel({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        "inline-block rounded-[3px] border border-line bg-white px-1.5 py-[1px] font-ui text-[10px] font-bold uppercase tracking-wide text-muted",
+        "inline-block rounded-[3px] border border-line bg-white px-1.5 py-[1px] font-ui text-[10px] font-bold uppercase tracking-wide text-meta",
         className,
       )}
     >

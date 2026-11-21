@@ -171,14 +171,14 @@ async function SearchResults({ searchParams }: { searchParams: Promise<Query> })
 
       {q ? (
         <>
-          <p className="mb-4 text-[15px] text-muted">
+          <p className="mb-4 text-[15px] text-meta">
             {fill(t.search.resultsFor, { q })} ·{" "}
             {fill(t.search.count, { n: results.total })}
           </p>
           {results.stories.length === 0 ? (
             <div className="pb-10">
               <p className="text-[17px] font-semibold">{t.search.noResults}</p>
-              <p className="mt-1 text-[15px] text-muted">{t.search.noResultsHelp}</p>
+              <p className="mt-1 text-[15px] text-meta">{t.search.noResultsHelp}</p>
             </div>
           ) : (
             <>

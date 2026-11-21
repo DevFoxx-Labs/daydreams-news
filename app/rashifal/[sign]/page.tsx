@@ -50,8 +50,8 @@ export default async function RashiPage({
             {sign.glyph}
           </span>
           <div>
-            <p className="text-[14px] text-muted">{sign.dates}</p>
-            <p className="text-[14px] text-muted">{hindiLongDate(MOCK_NOW_ISO)}</p>
+            <p className="text-[14px] text-meta">{sign.dates}</p>
+            <p className="text-[14px] text-meta">{hindiLongDate(MOCK_NOW_ISO)}</p>
           </div>
         </div>
         <p className="mb-8 max-w-[70ch] text-[17px] leading-[1.8] lg:text-[19px]">

@@ -95,7 +95,7 @@ export function GalleryViewer({ images }: { images: Media[] }) {
         {image.caption}
         {image.isFile ? ` ${t.common.symbolicImage}` : ""}
         {image.credit ? (
-          <span className="text-muted"> — {image.credit}</span>
+          <span className="text-meta"> — {image.credit}</span>
         ) : null}
       </p>
 

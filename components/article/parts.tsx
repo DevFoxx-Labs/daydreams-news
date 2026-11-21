@@ -20,7 +20,7 @@ export function Breadcrumb({
   items: { label: string; href?: string }[];
 }) {
   return (
-    <nav aria-label={t.common.breadcrumb} className="py-4 text-[14px] font-medium text-muted">
+    <nav aria-label={t.common.breadcrumb} className="py-4 text-[14px] font-medium text-meta">
       <ol className="flex flex-wrap items-center gap-1.5">
         {items.map((item, index) => (
           <li key={item.label} className="flex items-center gap-1.5">
@@ -102,7 +102,7 @@ export function Byline({
           >
             {author.name}
           </Link>
-          <span className="block text-[12px] text-muted lg:text-[13.5px]">
+          <span className="block text-[12px] text-meta lg:text-[13.5px]">
             {story.dateline ? `${story.dateline} · ` : ""}
             {story.updatedAt ? t.article.updated : t.article.published}{" "}
             {hindiDateTime(updated)}
@@ -212,7 +212,7 @@ export function Corrections({ corrections }: { corrections: Correction[] }) {
         {corrections.map((correction) => (
           <li key={correction.correctedAt} className="text-[15px] leading-[1.6]">
             {correction.text}
-            <span className="ms-1 text-muted">
+            <span className="ms-1 text-meta">
               ({hindiDate(correction.correctedAt)})
             </span>
           </li>

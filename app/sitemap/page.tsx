@@ -109,7 +109,7 @@ export default async function SitemapPage() {
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-[13.5px] text-muted">
+            <p className="mt-4 text-[13.5px] text-meta">
               XML साइटमैप: <Link href="/sitemap.xml" className="text-brand">/sitemap.xml</Link>
               {" · "}
               <Link href="/news-sitemap.xml" className="text-brand">

@@ -85,7 +85,7 @@ export function LiveTimeline({
               {t.live.ended}
             </span>
           )}
-          <span className="text-[13.5px] text-muted">
+          <span className="text-[13.5px] text-meta">
             {t.live.lastUpdated}: {updates[0]?.clock ?? "—"}
           </span>
         </span>

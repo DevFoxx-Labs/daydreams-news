@@ -8,7 +8,7 @@ export function TrendingTags({ tags }: { tags: TrendingTag[] }) {
   return (
     <div className="border-b border-line">
       <Container className="no-scrollbar flex items-center gap-2.5 overflow-x-auto py-3">
-        <span className="me-1 shrink-0 text-[14px] font-semibold text-muted">
+        <span className="me-1 shrink-0 text-[14px] font-semibold text-meta">
           {t.home.trendingLabel}
         </span>
         {tags.map((tag) => (

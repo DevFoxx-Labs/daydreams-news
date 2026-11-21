@@ -75,7 +75,7 @@ export default async function VideoPage({ params }: PageProps<"/videos/[slug]">)
                 <Duration value={story.videoDuration} />
               ) : null}
             </StoryImage>
-            <p className="mt-2 text-[13px] text-muted">
+            <p className="mt-2 text-[13px] text-meta">
               डेमो वीडियो — असली प्लेयर (YouTube फ़साड) CMS से वीडियो आईडी मिलने पर लोड होगा।
             </p>
 

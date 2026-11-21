@@ -49,7 +49,7 @@ export function Logo({
           {site.name}
         </span>
         {showTagline && size === "desktop" ? (
-          <span className="mt-0.5 text-[13px] font-medium tracking-[0.2px] text-muted">
+          <span className="mt-0.5 text-[13px] font-medium tracking-[0.2px] text-meta">
             {site.tagline}
           </span>
         ) : null}

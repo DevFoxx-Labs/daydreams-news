@@ -181,7 +181,7 @@ export default async function ArticlePage({
                 className="h-[470px]"
                 sizes="(max-width: 1023px) 100vw, 880px"
               />
-              <figcaption className="mb-[22px] border-b border-line pb-[22px] pt-2 text-[14px] text-muted">
+              <figcaption className="mb-[22px] border-b border-line pb-[22px] pt-2 text-[14px] text-meta">
                 {story.image.caption}
                 {story.image.isAiGenerated
                   ? ` ${t.common.aiImage}`

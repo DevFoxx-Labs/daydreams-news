@@ -152,7 +152,7 @@ export function EmptyCategory({ fallback }: { fallback: Story[] }) {
   return (
     <div className="py-6">
       <p className="text-[17px] font-semibold">{t.pages.emptyCategory}</p>
-      <p className="mb-5 mt-1 text-[15px] text-muted">
+      <p className="mb-5 mt-1 text-[15px] text-meta">
         {t.pages.emptyCategoryHelp}
       </p>
       <StoryList stories={fallback} withLead={false} adPlacement="empty" />

@@ -70,13 +70,13 @@ export function EmbedFacade({
             <span className="px-4 text-center text-[15px] font-semibold">
               {title}
             </span>
-            <span className="text-[13px] text-muted">
+            <span className="text-[13px] text-meta">
               {config.label} लोड करने के लिए टैप करें
             </span>
           </button>
         )}
       </div>
-      <figcaption className="mt-2 text-[13px] text-muted">
+      <figcaption className="mt-2 text-[13px] text-meta">
         {config.label} · क्लिक करने पर ही बाहरी सामग्री लोड होगी।
       </figcaption>
     </figure>

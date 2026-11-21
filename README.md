@@ -22,6 +22,7 @@ Useful routes while developing:
 | `/` | Homepage (DESIGN §5) |
 | `/desh/uttar-bharat-kohra-thand-double-attack-1001` | Article template |
 | `/dev/components` | Design-system preview (development only) |
+| `/admin` | Newsroom panel (needs `ADMIN_SESSION_SECRET` + `ADMIN_DEV_PASSWORD`) |
 | `/consent` · `/grievance` | Consent dashboard and rights requests |
 | `/api/legal` | Versioned legal notices for the apps |
 
@@ -40,6 +41,7 @@ ROUTE=/ node scripts/overflow.mjs 360     # which element causes horizontal scro
 | `docs/DESIGN.md` | How it looks — tokens, components, every screen |
 | `docs/GRAPHICS_PROMPTS.md` | Image generation prompts and the news-ethics rules |
 | `docs/project-rules.md` | The standards this repo is built to — read first |
+| `docs/ROLES_AND_DASHBOARDS.md` | Who uses the portal, their permissions and what each dashboard shows |
 | `docs/known-gaps.md` | What is not done yet, with severity |
 | `docs/owner-todo.md` | Tasks only the owner can do (legal facts, accounts, keys) |
 | `changes/CHANGELOG.md` | One entry per task |
@@ -54,7 +56,9 @@ components/
   news/         primitives: StoryCard variants, AdSlot, Ticker, SectionHeader…
   home/ article/ live/ stories/ consent/ legal/   per-template pieces
   ui/           shadcn-style primitives restyled to the tokens
+  admin/        newsroom panel: shell, nav, dashboards, admin UI kit
 lib/
+  admin/        roles, scopes, session, newsroom workload
   cms/          the only way pages read content (swap this for the CMS)
   data/         typed mock content
   services/     weather / AQI / market / cricket adapters
