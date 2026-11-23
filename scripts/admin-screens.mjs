@@ -18,17 +18,17 @@ if (!password) {
 }
 
 const ACCOUNTS = [
-  { email: "desk@khabarsetu.test", name: "desk" },
-  { email: "stringer@khabarsetu.test", name: "stringer" },
-  { email: "bureau@khabarsetu.test", name: "bureau" },
-  { email: "grievance@khabarsetu.test", name: "grievance" },
-  { email: "editor@khabarsetu.test", name: "editor" },
+  { email: "desk@daydreamsnews.test", name: "desk" },
+  { email: "stringer@daydreamsnews.test", name: "stringer" },
+  { email: "bureau@daydreamsnews.test", name: "bureau" },
+  { email: "grievance@daydreamsnews.test", name: "grievance" },
+  { email: "editor@daydreamsnews.test", name: "editor" },
 ];
 
 const EXTRA_ROUTES = [
-  { path: "/admin/stories", name: "stories", account: "desk@khabarsetu.test" },
-  { path: "/admin/coverage", name: "coverage", account: "bureau@khabarsetu.test" },
-  { path: "/admin/earnings", name: "earnings", account: "stringer@khabarsetu.test" },
+  { path: "/admin/stories", name: "stories", account: "desk@daydreamsnews.test" },
+  { path: "/admin/coverage", name: "coverage", account: "bureau@daydreamsnews.test" },
+  { path: "/admin/earnings", name: "earnings", account: "stringer@daydreamsnews.test" },
 ];
 
 await mkdir(".screens", { recursive: true });

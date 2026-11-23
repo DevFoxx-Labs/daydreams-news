@@ -1,4 +1,4 @@
-# ख़बर सेतु (Khabar Setu)
+# Daydreams News
 
 A fast, mobile-first Hindi news portal — Next.js 16 (App Router, Cache Components),
 TypeScript and Tailwind CSS v4.
@@ -48,8 +48,10 @@ AS_USER=u-desk ROUTES=/admin,/admin/stories node scripts/hydration-check.mjs
 | `docs/ROLES_AND_DASHBOARDS.md` | Who uses the portal, their permissions and what each dashboard shows |
 | `docs/known-gaps.md` | What is not done yet, with severity |
 | `docs/owner-todo.md` | Tasks only the owner can do (legal facts, accounts, keys) |
+| `docs/brand/BRAND.md` | The logo files, colours and where each one goes |
 | `changes/CHANGELOG.md` | One entry per task |
-| `docs/reference/` | Reference screens and the static prototypes |
+| `docs/reference/` | Reference screens and the static prototypes (as delivered — they still show the pre-launch placeholder name) |
+| `docs/design-kit-original/` | Untouched copy of the delivered design kit; `docs/` above is the working copy |
 
 ## Structure
 

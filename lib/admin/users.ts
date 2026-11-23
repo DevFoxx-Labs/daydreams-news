@@ -21,7 +21,7 @@ import type { AdminUser } from "./rbac";
 
 export type AdminAccount = AdminUser & { passwordHash: string };
 
-const SALT = "khabar-setu-dev-accounts";
+const SALT = "daydreams-news-dev-accounts";
 
 function hash(password: string): string {
   return scryptSync(password, SALT, 64).toString("hex");
@@ -47,7 +47,7 @@ const SEEDS: Seed[] = [
   {
     id: "u-eic",
     name: "प्रधान संपादक (डेमो)",
-    email: "editor@khabarsetu.test",
+    email: "editor@daydreamsnews.test",
     role: "editor_in_chief",
     scope: { kind: "global" },
     mfaEnabled: false,
@@ -55,7 +55,7 @@ const SEEDS: Seed[] = [
   {
     id: "u-desk",
     name: "डेस्क एडिटर (डेमो)",
-    email: "desk@khabarsetu.test",
+    email: "desk@daydreamsnews.test",
     role: "desk_editor",
     scope: { kind: "global" },
     mfaEnabled: false,
@@ -63,7 +63,7 @@ const SEEDS: Seed[] = [
   {
     id: "u-reporter",
     name: "रिपोर्टर का नाम (डेमो)",
-    email: "reporter@khabarsetu.test",
+    email: "reporter@daydreamsnews.test",
     role: "reporter",
     scope: { kind: "own" },
     mfaEnabled: false,
@@ -71,7 +71,7 @@ const SEEDS: Seed[] = [
   {
     id: "u-stringer",
     name: "ज़िला संवाददाता (डेमो)",
-    email: "stringer@khabarsetu.test",
+    email: "stringer@daydreamsnews.test",
     role: "stringer",
     scope: { kind: "district", values: ["gaya"] },
     mfaEnabled: false,
@@ -79,7 +79,7 @@ const SEEDS: Seed[] = [
   {
     id: "u-bureau",
     name: "ब्यूरो चीफ, बिहार (डेमो)",
-    email: "bureau@khabarsetu.test",
+    email: "bureau@daydreamsnews.test",
     role: "bureau_chief",
     scope: { kind: "state", values: ["bihar"] },
     mfaEnabled: false,
@@ -87,7 +87,7 @@ const SEEDS: Seed[] = [
   {
     id: "u-grievance",
     name: "शिकायत निवारण अधिकारी (डेमो)",
-    email: "grievance@khabarsetu.test",
+    email: "grievance@daydreamsnews.test",
     role: "grievance",
     scope: { kind: "global" },
     mfaEnabled: false,
@@ -95,7 +95,7 @@ const SEEDS: Seed[] = [
   {
     id: "u-admin",
     name: "सिस्टम एडमिन (डेमो)",
-    email: "admin@khabarsetu.test",
+    email: "admin@daydreamsnews.test",
     role: "admin",
     scope: { kind: "global" },
     mfaEnabled: false,

@@ -21,7 +21,7 @@ import { verifyCredentials } from "@/lib/admin/users";
 const user = (over: Partial<AdminUser> = {}): AdminUser => ({
   id: "u-test",
   name: "टेस्ट",
-  email: "test@khabarsetu.test",
+  email: "test@daydreamsnews.test",
   role: "reporter",
   scope: { kind: "own" },
   mfaEnabled: false,
@@ -196,17 +196,17 @@ describe("credentials", () => {
 
   it("refuses every sign-in when no dev password is configured", () => {
     delete process.env.ADMIN_DEV_PASSWORD;
-    expect(verifyCredentials("desk@khabarsetu.test", "anything")).toBeNull();
+    expect(verifyCredentials("desk@daydreamsnews.test", "anything")).toBeNull();
     process.env.ADMIN_DEV_PASSWORD = ORIGINAL;
   });
 
   it("accepts the configured password and rejects a wrong one", () => {
     process.env.ADMIN_DEV_PASSWORD = "test-password-123";
-    expect(verifyCredentials("desk@khabarsetu.test", "test-password-123")?.role).toBe(
+    expect(verifyCredentials("desk@daydreamsnews.test", "test-password-123")?.role).toBe(
       "desk_editor",
     );
-    expect(verifyCredentials("desk@khabarsetu.test", "wrong")).toBeNull();
-    expect(verifyCredentials("nobody@khabarsetu.test", "test-password-123")).toBeNull();
+    expect(verifyCredentials("desk@daydreamsnews.test", "wrong")).toBeNull();
+    expect(verifyCredentials("nobody@daydreamsnews.test", "test-password-123")).toBeNull();
     process.env.ADMIN_DEV_PASSWORD = ORIGINAL;
   });
 });

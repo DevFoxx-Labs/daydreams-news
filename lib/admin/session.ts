@@ -17,7 +17,7 @@ import type { AdminUser } from "./rbac";
  * instead of leaving it open (fail closed).
  */
 
-export const SESSION_COOKIE = "ks_admin_session";
+export const SESSION_COOKIE = "dn_admin_session";
 const MAX_AGE_SECONDS = 12 * 60 * 60; // 12h — matches the global security rule.
 
 function secret(): string | null {

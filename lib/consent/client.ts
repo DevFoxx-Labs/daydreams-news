@@ -14,17 +14,17 @@ type CookiePurpose = keyof ConsentState;
 /**
  * Browser-side consent storage.
  *
- * - `ks_consent` cookie: the current choice, so the server could read it later.
- * - `ks_visitor` cookie: an anonymous id that links the reader's ledger rows.
- * - `ks_consent_log` localStorage: the reader's own timestamped history, which
+ * - `dn_consent` cookie: the current choice, so the server could read it later.
+ * - `dn_visitor` cookie: an anonymous id that links the reader's ledger rows.
+ * - `dn_consent_log` localStorage: the reader's own timestamped history, which
  *   the "आपकी सहमतियां" page shows them (global rule §3).
  *
  * All three are strictly necessary and listed in the Cookie Policy.
  */
 
-export const CONSENT_COOKIE = "ks_consent";
-export const VISITOR_COOKIE = "ks_visitor";
-export const CONSENT_LOG_KEY = "ks_consent_log";
+export const CONSENT_COOKIE = "dn_consent";
+export const VISITOR_COOKIE = "dn_visitor";
+export const CONSENT_LOG_KEY = "dn_consent_log";
 
 const YEAR = 60 * 60 * 24 * 365;
 

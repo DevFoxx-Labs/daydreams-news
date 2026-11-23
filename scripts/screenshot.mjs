@@ -29,7 +29,7 @@ for (const width of widths) {
   if (process.env.CONSENT === "1") {
     await context.addCookies([
       {
-        name: "ks_consent",
+        name: "dn_consent",
         value: encodeURIComponent(
           JSON.stringify({
             necessary: true,

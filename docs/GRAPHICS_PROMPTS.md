@@ -1,4 +1,4 @@
-# ख़बर सेतु — Graphics Prompt Pack (Hindi News Portal)
+# Daydreams News — Graphics Prompt Pack (Hindi News Portal)
 
 Image-generation prompts for the graphics a news portal needs: category fallback images, illustrated explainers, section banners, breaking/live templates, web-story covers, icons, social/OG templates, house ads and empty states. They match `DESIGN.md` (brand red `#C8102E`, ink `#111`, navy `#0F1B33`, gold `#F6B40E`, white).
 Works with ChatGPT / GPT-Image, Midjourney, Ideogram, Gemini (Imagen / Nano Banana), Adobe Firefly, Leonardo, Flux.
@@ -147,7 +147,9 @@ One per category, 16:9, illustrative. Generate 2–3 variants each so repeated f
 
 ## 8. Social, OG & video thumbnails (text → Ideogram / GPT-Image, or add text later)
 
-- **Default OG image:** `News website share card, white background with a crimson band on the left, a red square logo mark with the Devanagari letter "ख़" in white, large bold Hindi text "ख़बर सेतु", smaller text "सच की ख़बर, सबसे पहले", subtle world-map pattern in light grey. --ar 1.91:1`
+- **Default OG image:** no longer a prompt — it is **generated from the real logo** by
+  `node scripts/brand-assets.mjs` into `app/opengraph-image.png` / `app/twitter-image.png`.
+  Never generate a brand card with AI: the logo must be the owner's file, pixel for pixel.
 - **Article share template (no text):** `Social card template, 1200×630, top 70% empty for a photo, bottom 30% solid crimson band with a thin white rule, small white square logo area at bottom right. --ar 1.91:1`
 - **Breaking news post:** `Instagram post: black background, crimson banner at top with bold Hindi text "ब्रेकिंग न्यूज़", large empty middle area for the headline, small logo mark at the bottom. --ar 4:5`
 - **Quote card:** `Instagram quote card, navy background, big gold quotation mark, empty centre for a Hindi quote, thin red line at the bottom. --ar 4:5`

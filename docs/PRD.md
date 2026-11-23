@@ -1,4 +1,4 @@
-# PRD — ख़बर सेतु (Khabar Setu): Hindi News Portal
+# PRD — Daydreams News: Hindi News Portal
 
 | | |
 |---|---|
@@ -14,7 +14,7 @@
 
 ## 1. Summary
 
-Khabar Setu is a fast, mobile-first Hindi news website with its own newsroom CMS. Readers get national, state/city, sports, business, entertainment and utility news (jobs, education, weather, rashifal), plus live blogs, videos, web stories and photo galleries. Editors publish, update and promote stories in minutes. Revenue comes from display ads, with subscriptions and the e-paper later.
+Daydreams News is a fast, mobile-first Hindi news website with its own newsroom CMS. Readers get national, state/city, sports, business, entertainment and utility news (jobs, education, weather, rashifal), plus live blogs, videos, web stories and photo galleries. Editors publish, update and promote stories in minutes. Revenue comes from display ads, with subscriptions and the e-paper later.
 
 ## 2. Problem & opportunity
 
@@ -355,7 +355,9 @@ then summarise what is done and what is left. Don't start the next milestone.
 
 ## 15. Open questions
 
-1. Final brand name, domain and logo? (Currently placeholder "ख़बर सेतु".)
+1. ~~Final brand name and logo?~~ **Answered 23 Nov 2026: Daydreams News**, with the
+   owner's logo generated into `public/brand/` (`docs/brand/BRAND.md`). The **domain**
+   is still open — it is read from `NEXT_PUBLIC_SITE_URL`.
 2. Which states and cities get dedicated desks at launch?
 3. Photo sources: own photographers, a news agency subscription, or both?
 4. CMS choice confirmed as Payload, or an existing WordPress?

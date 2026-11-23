@@ -1,4 +1,4 @@
-# Project rules — ख़बर सेतु (Khabar Setu)
+# Project rules — Daydreams News
 
 The standards this repo is built to. Read before changing anything.
 

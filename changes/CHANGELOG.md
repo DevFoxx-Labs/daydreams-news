@@ -1,6 +1,70 @@
-# Change log — ख़बर सेतु (Khabar Setu)
+# Change log — Daydreams News
 
 Newest first. One entry per task; entries are never rewritten.
+
+---
+
+## 2026-11-23 — Remove the last traces of the placeholder brand name
+
+**Scope:** the owner confirmed the app is **Daydreams News** and the old placeholder
+name must appear nowhere. The visible brand was already switched over with the logo
+work below; this entry clears the leftovers — storage keys, demo account addresses,
+doc titles and folder names.
+
+### Threat model (built with the change)
+
+| Asset | Actor | Entry point | Abuse case | Defence (layer) |
+|---|---|---|---|---|
+| Reader consent proof | — | Renamed consent cookies | A renamed cookie reads as "no choice made", so a reader who had chosen is asked again | Accepted deliberately pre-launch: the ledger rows are untouched, optional purposes stay **off** until re-accepted, and the `cookies` notice version is bumped so new records say which text was shown · *prevent* |
+| Panel accounts | Operator | Renamed scrypt salt | Hashes derived from a different salt could silently accept a stale password | Hashes are derived at module load from `ADMIN_DEV_PASSWORD`, never stored, so the salt change has no persisted effect; sign-in re-verified end to end · *prevent* |
+| Dev credentials | — | `.env.local` | The old name survives in a local password value | Left untouched on purpose (changing it would break the owner's logins) and recorded in `docs/owner-todo.md` — it is local-only and not in git · *detect* |
+
+### Changed
+
+- **Storage keys `ks_*` → `dn_*`** — `dn_consent`, `dn_visitor`, `dn_consent_log`,
+  `dn_city`, `dn_state`, `dn_font_step` (`lib/consent/client.ts`,
+  `lib/preferences.ts`) and the panel's `dn_admin_session`
+  (`lib/admin/session.ts`), plus the two helper scripts that set them.
+- **Cookie Policy** (`lib/legal/notices.ts`): the table lists the new names, and
+  `NOTICE_VERSIONS.cookies` is bumped to `2026-11-23` because the text changed.
+  Every consent record written from now on carries `cookies@2026-11-23`.
+- **Demo panel accounts**: `@khabarsetu.test` → `@daydreamsnews.test` and the scrypt
+  salt renamed (`lib/admin/users.ts`, `scripts/admin-screens.mjs`,
+  `tests/admin-rbac.test.ts`).
+- **Docs**: titles of `README.md`, `docs/project-rules.md`, `docs/known-gaps.md`,
+  `docs/owner-todo.md`, `docs/ROLES_AND_DASHBOARDS.md`, `changes/CHANGELOG.md`, plus
+  the brand passages in `docs/PRD.md` (open question §15.1 answered), `docs/DESIGN.md`
+  (the §0 "placeholder name" note and the §4 Logo row now describe the real logo) and
+  `docs/GRAPHICS_PROMPTS.md` (the OG-card prompt is replaced by "generated from the
+  real logo — never AI-generate the brand card").
+- **Renamed** `docs/khabar-setu-design-kit_1/` → `docs/design-kit-original/` and the
+  delivered zip alongside it. Contents are byte-identical to the as-delivered kit.
+
+### Deliberately left alone
+
+- `docs/reference/**` and `docs/design-kit-original/**` — the prototypes and the three
+  reference PNGs are the visual baseline the build is compared against. The PNGs show
+  the placeholder masthead and cannot be re-rendered, so editing only the HTML would
+  break the pair. They are design input, never shipped.
+- The body of the brand-identity entry below, which records the placeholder it
+  replaced. Old change-log entries are not rewritten.
+- `.env.local` (see the threat model).
+
+### Verified
+
+| Check | Command | Result |
+|---|---|---|
+| Types | `npx tsc --noEmit` | clean |
+| Lint | `npx eslint .` | 0 errors, 0 warnings |
+| Tests | `npx vitest run` | 76 passed (6 files) |
+| Build | `npx next build` | 327 pages, compiled clean |
+| Built output | `grep` for the old name across `.next/server/app` (310 HTML files) + `.next/static` | **no match** |
+| Reader, on `next start` | accept-all on `/`, then read cookies + localStorage | `dn_consent`, `dn_visitor`, `dn_consent_log`; no `ks_*`; page text has the new brand and not the old |
+| Cookie Policy | `/cookies` | lists `dn_city` / `dn_consent`, no `ks_` key |
+| Panel | sign in as `desk@daydreamsnews.test` | works; session cookie `dn_admin_session`; dashboard shows the new brand |
+
+Readers who had already made a cookie choice locally will see the banner once more —
+that is the cost of renaming the cookie, and it is the right time to pay it.
 
 ---
 

@@ -1,4 +1,4 @@
-# Owner TODO — ख़बर सेतु
+# Owner TODO — Daydreams News
 
 Tasks only the owner can do (legal facts, accounts, consoles, keys).
 Nothing here is ticked off without the owner's confirmation.
@@ -47,8 +47,14 @@ cheap to answer now and expensive to change later.
 
 ### Legal & compliance (blocks launch)
 
-- [ ] Decide the final brand name and domain (PRD §15.1). Everything reads from
-      `lib/site.ts`, so it is a one-file change.
+- [x] Decide the final brand name (PRD §15.1) — **Daydreams News**, confirmed by the
+      owner on 23 Nov 2026. The name, logo paths and brand colours all read from
+      `lib/site.ts`.
+- [ ] Decide the **domain** and set `NEXT_PUBLIC_SITE_URL`. Until then every absolute
+      URL (canonical, OG, RSS, sitemap, JSON-LD) points at `http://localhost:3000`.
+- [ ] Your local `.env.local` still has `ADMIN_DEV_PASSWORD=khabarsetu-dev` — change it
+      when convenient. I left the value alone so your current panel logins keep working;
+      it is a local-only dev password and is not in git.
 - [ ] Fill the real legal facts as environment variables — until then the site shows
       `[भरना बाकी]` placeholders:
       - `NEXT_PUBLIC_LEGAL_ENTITY`, `NEXT_PUBLIC_LEGAL_ADDRESS`, `NEXT_PUBLIC_LEGAL_CIN`

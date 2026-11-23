@@ -16,7 +16,9 @@ import { site } from "@/lib/site";
 export const NOTICE_VERSIONS = {
   privacy: "2026-11-23",
   terms: "2026-11-20",
-  cookies: "2026-11-20",
+  // Bumped with the rename of every storage key to the `dn_` prefix — the
+  // cookie table in this notice lists them by name, so the text changed.
+  cookies: "2026-11-23",
   refund: "2026-11-20",
   ethics: "2026-11-20",
   grievance: "2026-11-20",
@@ -183,28 +185,28 @@ export const legalNotices: LegalNotice[] = [
         type: "table",
         head: ["नाम", "मक़सद", "श्रेणी", "अवधि"],
         rows: [
-          ["ks_city", "मौसम और AQI के लिए चुना गया शहर याद रखना", "ज़रूरी", "1 साल"],
-          ["ks_state", "होम पेज पर आपके राज्य की ख़बरें दिखाना", "ज़रूरी", "1 साल"],
+          ["dn_city", "मौसम और AQI के लिए चुना गया शहर याद रखना", "ज़रूरी", "1 साल"],
+          ["dn_state", "होम पेज पर आपके राज्य की ख़बरें दिखाना", "ज़रूरी", "1 साल"],
           [
-            "ks_consent",
+            "dn_consent",
             "आपकी कुकी पसंद याद रखना (कौन-सी श्रेणी चालू है)",
             "ज़रूरी",
             "1 साल",
           ],
           [
-            "ks_visitor",
+            "dn_visitor",
             "सहमति रिकॉर्ड से जुड़ी अनामी आईडी, ताकि आपकी पसंद साबित की जा सके",
             "ज़रूरी",
             "1 साल",
           ],
           [
-            "ks_font_step (localStorage)",
+            "dn_font_step (localStorage)",
             "आर्टिकल का फ़ॉन्ट साइज़ याद रखना",
             "ज़रूरी",
             "जब तक आप हटाएं",
           ],
           [
-            "ks_consent_log (localStorage)",
+            "dn_consent_log (localStorage)",
             "आपकी सहमति का इतिहास आपको दिखाने के लिए",
             "ज़रूरी",
             "जब तक आप हटाएं",

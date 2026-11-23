@@ -32,7 +32,7 @@ function sessionCookie(userId) {
   const payload = `${userId}.${Date.now() + 3_600_000}`;
   const signature = createHmac("sha256", secret).update(payload).digest("hex");
   return {
-    name: "ks_admin_session",
+    name: "dn_admin_session",
     value: `${payload}.${signature}`,
     url: base,
     httpOnly: true,

@@ -1,9 +1,9 @@
-# Known gaps — ख़बर सेतु
+# Known gaps — Daydreams News
 
 Severity: 🔴 blocks launch · 🟠 fix before scale · 🟡 nice to have.
 Every entry names the path, the impact and the fix.
 
-Last updated: 20 Nov 2026 (reader site M0–M6).
+Last updated: 23 Nov 2026 (brand identity + placeholder-name cleanup).
 
 ---
 

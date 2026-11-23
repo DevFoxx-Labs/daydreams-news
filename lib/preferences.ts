@@ -9,14 +9,14 @@
 
 export const PREF_COOKIES = {
   /** FR-G4 — selected city for weather/AQI. */
-  city: "ks_city",
+  city: "dn_city",
   /** FR-H3 — selected state for the home strip. */
-  state: "ks_state",
+  state: "dn_state",
 } as const;
 
 export const PREF_STORAGE = {
   /** FR-A5 — article font-size step (0 | 1 | 2). */
-  fontStep: "ks_font_step",
+  fontStep: "dn_font_step",
 } as const;
 
 export const COOKIE_MAX_AGE_YEAR = 60 * 60 * 24 * 365;

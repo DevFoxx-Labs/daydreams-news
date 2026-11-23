@@ -1,12 +1,12 @@
-# ख़बर सेतु (Khabar Setu) — Design Recipe for a Hindi News Portal
+# Daydreams News — Design Recipe for a Hindi News Portal
 
-> **For Claude Code:** This file is the single source of truth for how the Khabar Setu Hindi news website **looks**. `PRD.md` defines **what** to build, the phases and the acceptance criteria. Read both.
+> **For Claude Code:** This file is the single source of truth for how the Daydreams News Hindi news website **looks**. `PRD.md` defines **what** to build, the phases and the acceptance criteria. Read both.
 > Build every screen **mobile-first and fully responsive** — one codebase, one component set, no separate m-site.
 > Match the references in `./reference/`:
 > - `reference/01-news-homepage-desktop.png` · `reference/02-news-article-desktop.png` · `reference/03-news-mobile-screens.png`
 > - `reference/prototype/*.html` (+ `base.css`, `scenes.js`) — static prototypes with exact spacing, sizes and Hindi copy. **Reference only**: rebuild as React components. `scenes.js` draws placeholder illustrations; the real site uses real photos from the CMS.
 >
-> The brand name "ख़बर सेतु" is a placeholder — keep it in one config file (`lib/site.ts`) so it can be renamed in one place.
+> The brand is **Daydreams News** (settled 23 Nov 2026; this file originally carried a placeholder name). The name, the logo paths and the brand colours live in one config file, `lib/site.ts` — never hard-code them in a component. The logo files and their rules are in `docs/brand/BRAND.md`.
 > Never copy another publisher's logo, name, colours-as-brand or content. The layout follows the common pattern of large Hindi news portals; everything else is original.
 
 ---
@@ -15,7 +15,7 @@
 
 ```
 Read PRD.md, DESIGN.md and everything in ./reference first. Follow the milestones in PRD.md §12.
-Build the Khabar Setu Hindi news portal exactly as specified:
+Build the Daydreams News Hindi news portal exactly as specified:
 Next.js (App Router) + TypeScript + Tailwind CSS + shadcn/ui, design tokens from §2, Hindi-first (lang="hi").
 Build mobile-first; every page must work at 360, 390, 768, 1024, 1280, 1440 and 1920 px.
 Use shadcn/21st.dev components where they fit (sheet, tabs, carousel, dialog, accordion, input) restyled to these tokens.
@@ -116,7 +116,7 @@ Dark sections: web stories `#111`, videos `navy`, footer `#141414` (text `#BDBDB
 | **Ticker** | Black label "⚡ ब्रेकिंग" with right-pointing notch, then a horizontally scrolling list of headlines separated by red dots. CSS marquee (`@keyframes`), pause on hover/focus, `prefers-reduced-motion` → static list with arrows. |
 | **TagChip** | Pill, `border-line bg-[#fafafa]`, `#` in brand, 14px/600. |
 | **ShareBar** | Circular 38px buttons: WhatsApp `#25D366`, Facebook `#1877F2`, X `#111`, LinkedIn `#0A66C2`, Copy `#888`; font-size control "अ- अ+" pill. Use the Web Share API on mobile first. |
-| **Logo** | Brand square (54px desktop / 34px mobile, radius 6) with white "ख़" (800), plus wordmark "ख़बर सेतु" in brand 800 (40px / 24px) and tagline "सच की ख़बर, सबसे पहले" (13px muted). Build as an SVG/React component; white version for the footer. |
+| **Logo** | The Daydreams News logo image from `site.brand` (54px tall desktop / 34px mobile), with the tagline "सच की ख़बर, सबसे पहले" (13px meta) beside it on desktop. The footer uses the **reverse** version on the dark background. `LogoMark` (the swan alone) is for tight spots — the mobile reading header and the panel. Never redraw the logo in markup; see `docs/brand/BRAND.md`. |
 
 ---
 
