@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { site } from "@/lib/site";
+
 /**
  * Admin route group.
  *
@@ -12,7 +14,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: {
     default: "न्यूज़रूम पैनल",
-    template: "%s · ख़बर सेतु न्यूज़रूम",
+    template: `%s · ${site.name} न्यूज़रूम`,
   },
   robots: { index: false, follow: false, nocache: true },
 };

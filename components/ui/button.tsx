@@ -5,7 +5,7 @@ import type * as React from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * shadcn/ui button, restyled to the Khabar Setu tokens (DESIGN.md §2):
+ * shadcn/ui button, restyled to the Daydreams News tokens (DESIGN.md §2):
  * 4px radius, brand fill, Mukta 600/700. Tap target ≥ 44px on `lg`.
  */
 const buttonVariants = cva(

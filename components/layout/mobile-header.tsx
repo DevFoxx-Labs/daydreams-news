@@ -32,7 +32,7 @@ export function MobileHeader({
       <header className="sticky top-0 z-30 border-b border-line bg-white lg:hidden">
         <div className="flex h-14 items-center justify-between px-2">
           <BackButton />
-          <LogoMark className="!size-7 !text-[19px]" />
+          <LogoMark className="size-7 p-0.5" />
           <FontSizeControl className="!h-9" />
         </div>
       </header>

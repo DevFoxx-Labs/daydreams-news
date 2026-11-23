@@ -4,6 +4,72 @@ Newest first. One entry per task; entries are never rewritten.
 
 ---
 
+## 2026-11-23 — Brand identity: Daydreams News logo, favicons, app icons, SEO and social images
+
+**Scope:** the owner supplied the Daydreams News logo (transparent and on-light
+versions). All brand files are now generated from it, and the site uses it in
+place of the placeholder "ख़बर सेतु" mark.
+
+### Added
+- **Master and generator.** `docs/brand/source/` holds the supplied logos.
+  `scripts/brand-assets.mjs` (Playwright Chromium only, nothing new installed)
+  derives 44 files. It splits each pixel into navy/gold/white weights to make
+  reverse and mono versions, and upscales the ~350 px swan 3× with re-sharpened
+  edges. Composed designs are HTML rendered to PNG, so Devanagari is shaped correctly.
+- **Logo set** (`public/brand/logo`, `public/brand/mark`): full colour, reverse,
+  mono white/navy/black, stacked, wordmark only, and 1200/600/300 px email widths.
+- **Icons:** `app/favicon.ico` (16/32/48), `app/icon.png` (192),
+  `app/apple-icon.png` (180), manifest icons 192/512 in `any`, `maskable`
+  and `monochrome` versions, and `app/manifest.ts` (`/manifest.webmanifest`).
+- **SEO:** a static `app/opengraph-image.png` and `app/twitter-image.png` with
+  Hindi alt text, a square organisation logo used in `NewsMediaOrganization`
+  JSON-LD, a 60 px publisher logo, and a web-story publisher logo.
+- **Social:** avatars (white and navy), plus covers for X, Facebook, YouTube
+  and LinkedIn.
+- **Docs:** `docs/brand/BRAND.md` (colours, versions, clear space, where each
+  file goes) and the contact sheet `docs/brand/preview.png`.
+- **Tests:** `tests/brand-assets.test.ts` (9). Each `site.brand` file and
+  manifest icon must exist at its declared size, the app icon conventions must
+  be present, and the ICO must hold 16/32/48 px frames.
+
+### Changed
+- `lib/site.ts`: the brand name is **Daydreams News** (`name` and `nameLatin`).
+  New `site.brand` image paths and `logoNavy`/`logoGold` colours. Removed
+  `site.mark`.
+- `components/layout/logo.tsx`: `Logo` renders the logo image (reverse version
+  in the dark footer) at the old masthead heights. `LogoMark` is the swan on a
+  white tile and is now used by the mobile reading header, the web-story
+  player, the admin sidebar and topbar, and the admin login.
+- Removed `app/opengraph-image.tsx` (the Latin-only "KS" card), replaced by the
+  static card.
+- Replaced the hard-coded old name in the newsletter consent text, the admin
+  title template, the web-story chrome and the demo data.
+- **Privacy Notice version bumped to `2026-11-23`**, because its text includes
+  the brand name. New consents record the new version. Other versioned notices
+  don't mention the name and are unchanged.
+
+### Threat model (2 min)
+Static public images and a manifest only. No new input, endpoint, personal
+data, tracker or processor, so no DPDP purpose change. The generator is
+dev-only, reads one local file, and serves it to the headless browser from an
+intercepted fake origin with no network fetch. Nothing needs a new rate limit
+or authorisation check.
+
+### Verified
+| Check | Command | Result |
+|---|---|---|
+| Types / lint / tests | `pnpm check` | clean, 0 lint errors, 76 tests passed (67 existing + 9 new) |
+| Build | `next build` | succeeded, 327 static pages |
+| Head tags | `curl /` on `next start` | favicon.ico, icon.png 192, apple-touch-icon 180, manifest, og:image and twitter:image 1200×630 with alt |
+| Responsive | `scripts/screenshot.mjs` home 390/1440, `/admin/login` 390, `/web-stories` 390 | 0 px overflow; header, mobile header and footer logos checked by eye |
+
+### Notes
+- Lighthouse was not re-run. The logo is a `next/image` (served as AVIF/WebP at
+  display size, `loading="eager"`), not the LCP element.
+- The site's UI colours are still the earlier red theme (G29).
+
+---
+
 ## 2026-11-21 — Fix: cookie-banner hydration mismatch + Cache Components insights on the panel
 
 **Scope:** a reported hydration error on the homepage, and the two dev-overlay

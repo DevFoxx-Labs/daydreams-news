@@ -11,18 +11,21 @@ import { site } from "@/lib/site";
 
 const abs = (path: string) => new URL(path, site.url).toString();
 
+/** Site-wide social card (same file as app/opengraph-image.png, stable URL). */
+const SITE_CARD = "/brand/social/og-default-1200x630.png";
+
 export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "NewsMediaOrganization",
     name: site.name,
-    alternateName: site.nameLatin,
+    alternateName: site.nameLatin !== site.name ? site.nameLatin : undefined,
     url: site.url,
     logo: {
       "@type": "ImageObject",
-      url: abs("/opengraph-image"),
-      width: 1200,
-      height: 630,
+      url: abs(site.brand.organizationLogo.src),
+      width: site.brand.organizationLogo.width,
+      height: site.brand.organizationLogo.height,
     },
     inLanguage: site.lang,
     ethicsPolicy: abs("/ethics"),
@@ -64,8 +67,8 @@ export function newsArticleJsonLd(story: Story) {
     articleSection: story.category.name,
     keywords: story.tags?.join(", "),
     // Until per-story cards exist (docs/known-gaps.md), the site card is used.
-    image: [abs("/opengraph-image")],
-    thumbnailUrl: abs("/opengraph-image"),
+    image: [abs(SITE_CARD)],
+    thumbnailUrl: abs(SITE_CARD),
     uploadDate: story.type === "video" ? istIso(story.publishedAt) : undefined,
     duration: story.videoDuration
       ? `PT${story.videoDuration.split(":")[0]}M${story.videoDuration.split(":")[1]}S`

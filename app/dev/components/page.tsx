@@ -68,7 +68,7 @@ export default async function DevComponentsPage() {
     <SiteShell variant="full">
       <Container className="py-6">
         <h1 className="mb-6 text-[26px] font-extrabold">
-          Khabar Setu — design system
+          Daydreams News — design system
         </h1>
 
         <Row title="Badges & labels">

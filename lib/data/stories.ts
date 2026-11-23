@@ -96,7 +96,7 @@ const weatherBody: RichTextBlock[] = [
   },
   {
     type: "paragraph",
-    text: "मौसम विभाग अगला अपडेट शाम को जारी करेगा। ताज़ा जानकारी के लिए ख़बर सेतु के लाइव अपडेट पेज से जुड़े रहें। (यह डेमो कंटेंट है।)",
+    text: "मौसम विभाग अगला अपडेट शाम को जारी करेगा। ताज़ा जानकारी के लिए Daydreams News के लाइव अपडेट पेज से जुड़े रहें। (यह डेमो कंटेंट है।)",
   },
 ];
 
@@ -1514,7 +1514,7 @@ const seeds: Seed[] = [
     cat: "personal-finance",
     scene: "market",
     mins: 500,
-    deck: "यह प्रायोजित सामग्री है। ख़बर सेतु का संपादकीय विभाग इसमें शामिल नहीं है।",
+    deck: "यह प्रायोजित सामग्री है। Daydreams News का संपादकीय विभाग इसमें शामिल नहीं है।",
     sponsored: true,
     author: "desk-report",
     views: 4_200,
@@ -1553,7 +1553,7 @@ function demoBody(seed: Seed): RichTextBlock[] {
     },
     {
       type: "paragraph",
-      text: "ख़बर सेतु इस मामले पर नज़र बनाए हुए है। ताज़ा अपडेट के लिए पेज रिफ़्रेश करते रहें। (डेमो कंटेंट)",
+      text: "Daydreams News इस मामले पर नज़र बनाए हुए है। ताज़ा अपडेट के लिए पेज रिफ़्रेश करते रहें। (डेमो कंटेंट)",
     },
   ];
 }
@@ -1584,7 +1584,7 @@ function buildStory(seed: Seed): Story {
         seed.id === "1001"
           ? "घने कोहरे के बीच सुबह का नज़ारा।"
           : `${category.name} से जुड़ी प्रतीकात्मक तस्वीर।`,
-      credit: "ख़बर सेतु",
+      credit: "Daydreams News",
       isFile: true,
     },
     authors: [author],

@@ -100,3 +100,20 @@ cheap to answer now and expensive to change later.
 - [ ] Is an English edition planned within 12 months? It decides whether URLs stay at
       `/` or move to `/hi/` (PRD §15.7) — cheap now, expensive later.
 - [ ] Newsletter and push providers + budget (PRD §15.8).
+
+## 2026-11-23 — Brand identity (Daydreams News)
+
+- [ ] Confirm **"Daydreams News"** as the final brand name (now set in `lib/site.ts`). Decide if you want a
+      Devanagari form (for example for page titles or the masthead). None has been made up.
+- [ ] Decide the UI colours: keep the red accent or retheme to the logo's navy and gold (gap G29).
+- [ ] Ask the logo designer for a **vector master** (SVG/AI/PDF) of the logo and the swan (gap G30).
+- [ ] Check that the name and the swan logo are free to use and register the trademark if you plan to (talk to a lawyer).
+- [ ] Set `NEXT_PUBLIC_SITE_URL` to the real domain. Share cards and JSON-LD logo URLs use it, and they
+      currently point at `localhost`.
+- [ ] Upload the social files from `public/brand/social/` (sizes and targets are in `docs/brand/BRAND.md` §5):
+      the avatar and the X, Facebook, YouTube and LinkedIn covers. Then put the profile URLs in the
+      `NEXT_PUBLIC_SOCIAL_*` env vars.
+- [ ] Google Publisher Center / Google News: upload `public/brand/seo/organization-logo-512.png` (square) and
+      `public/brand/logo/daydreams-news-logo.png` (rectangular).
+- [ ] The Privacy Notice version moved to `2026-11-23` because its text now names Daydreams News. Include this
+      in the lawyer's review (gap G4).

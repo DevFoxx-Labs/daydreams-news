@@ -42,6 +42,7 @@ import {
   type NavItem,
   type NavLeafItem,
 } from "@/lib/admin/nav";
+import { LogoMark } from "@/components/layout/logo";
 import { ROLE_META, type AdminUser } from "@/lib/admin/rbac";
 import {
   adminSidebarStore,
@@ -513,9 +514,7 @@ export function AdminShell({
         >
           <div className={cn("flex items-center justify-center py-[13px]", collapsed ? "px-3" : "px-4")}>
             <Link href="/" className="flex shrink-0 items-center gap-2">
-              <span className="grid size-8 shrink-0 place-items-center rounded-[6px] bg-brand text-[20px] font-extrabold leading-none text-white">
-                <span className="translate-y-[-1px]">{site.mark}</span>
-              </span>
+              <LogoMark asLink={false} className="size-8" />
               {!collapsed ? (
                 <span className="text-[17px] font-extrabold tracking-[-0.3px] text-white">
                   {site.name}
@@ -670,9 +669,7 @@ export function AdminShell({
           {/* Topbar — mobile */}
           <header className="sticky top-0 z-30 flex shrink-0 items-center justify-between border-b border-border bg-card px-4 py-3 md:hidden">
             <Link href="/admin" className="flex items-center gap-2">
-              <span className="grid size-7 place-items-center rounded-[5px] bg-brand text-[17px] font-extrabold leading-none text-white">
-                <span className="translate-y-[-1px]">{site.mark}</span>
-              </span>
+              <LogoMark asLink={false} className="size-7 p-0.5" />
               <span className="text-[15px] font-bold text-foreground">{title}</span>
             </Link>
             <div className="flex items-center gap-2">

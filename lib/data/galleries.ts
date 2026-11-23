@@ -9,7 +9,7 @@ function img(scene: SceneKey, caption: string): Media {
     width: 1600,
     height: 900,
     caption,
-    credit: "ख़बर सेतु",
+    credit: "Daydreams News",
     isFile: true,
   };
 }

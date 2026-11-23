@@ -4,6 +4,7 @@ import { cookies, headers } from "next/headers";
 import { Suspense } from "react";
 
 import { AdminButton, AdminInput } from "@/components/admin/ui/primitives";
+import { LogoMark } from "@/components/layout/logo";
 import { clientIp, rateLimit } from "@/lib/rate-limit";
 import {
   SESSION_COOKIE,
@@ -169,9 +170,7 @@ export default function AdminLoginPage({ searchParams }: PageProps<"/admin/login
     <main className="flex min-h-screen items-center justify-center bg-background px-4 py-10">
       <div className="w-full max-w-[380px]">
         <div className="mb-6 flex items-center gap-2.5">
-          <span className="grid size-10 place-items-center rounded-[8px] bg-brand text-[24px] font-extrabold leading-none text-white">
-            <span className="translate-y-[-1px]">{site.mark}</span>
-          </span>
+          <LogoMark asLink={false} className="size-10 rounded-[8px]" />
           <div>
             <p className="text-lg font-extrabold leading-tight text-foreground">
               {site.name}

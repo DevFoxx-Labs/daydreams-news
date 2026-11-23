@@ -12,6 +12,7 @@ import { LogoMark } from "@/components/layout/logo";
 import { SceneArt } from "@/components/news/scene-art";
 import type { WebStory } from "@/lib/data/types";
 import { t } from "@/lib/i18n";
+import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 /**
@@ -133,9 +134,9 @@ export function WebStoryPlayer({
         {/* Header */}
         <div className="absolute inset-x-3.5 top-[72px] z-3 flex items-center justify-between text-[14px] font-bold text-white">
           <span className="flex items-center gap-2">
-            <LogoMark className="!size-7 !text-[19px]" asLink={false} />
+            <LogoMark className="size-7 p-0.5" asLink={false} />
             <span>
-              ख़बर सेतु · {t.common.webStories}
+              {site.name} · {t.common.webStories}
             </span>
           </span>
           <Link href={articleHref ?? "/web-stories"} aria-label={t.common.close}>

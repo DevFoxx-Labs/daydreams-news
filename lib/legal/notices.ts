@@ -14,7 +14,7 @@ import { site } from "@/lib/site";
  */
 
 export const NOTICE_VERSIONS = {
-  privacy: "2026-11-20",
+  privacy: "2026-11-23",
   terms: "2026-11-20",
   cookies: "2026-11-20",
   refund: "2026-11-20",

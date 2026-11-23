@@ -37,11 +37,13 @@ Last updated: 20 Nov 2026 (reader site M0–M6).
 | G15 | Follow box hidden | `components/article/parts.tsx` | The navy "Google News / WhatsApp" box in reference 02 does not render because no channel URLs are configured — placeholder links would be worse. | Owner supplies the URLs (`docs/owner-todo.md`), box appears automatically. |
 | G28 | Panel data is derived, not editorial truth | `lib/admin/newsroom.ts` | Queue status, waiting times and filings are derived deterministically from the mock stories, so the numbers are plausible but not real. | Replaced wholesale by CMS queries; the function signatures are the contract. |
 | G16 | Single sitemap file | `app/sitemap.ts` | All URLs in one file; fine now, breaks past ~10k URLs. | Split with `generateSitemaps()` per month once the archive grows. |
+| G29 | UI colours do not match the logo | `app/globals.css`, `lib/site.ts` (`colors.brand`) | The new logo is swan navy `#013376` and sunrise gold `#FAB736`, but the masthead nav, buttons, focus rings, `theme-color` and manifest still use the earlier red `#C8102E`. The site reads as two brands. | Owner decides: keep red as the "news" accent next to the navy/gold logo, or retheme the tokens to navy + gold. Either way it is a token change in two files plus a screenshot pass. |
 
 ## 🟡 Nice to have
 
 | # | Area | Path | Impact | Fix |
 |---|---|---|---|---|
+| G30 | No vector logo master | `docs/brand/source/` | The master is a 1774 px PNG and the swan is only ~350 px wide. The large mark files are upscaled and re-sharpened, which looks clean on screen, but they are not true vectors for print, signage or an `icon.svg` favicon. | Get an SVG/AI/PDF from the designer, place it in `docs/brand/source/` and point `scripts/brand-assets.mjs` at it. Then add `app/icon.svg`. |
 | G17 | Demo clock | `lib/data/clock.ts` | Relative times are measured against a fixed instant (20 Nov 2026, 13:10 IST). Deterministic and prerenderable, but not "live". | Real clock behind `<Suspense>` + `connection()` when the CMS lands. |
 | G18 | Search engine | `lib/search/translit.ts` | Hand-rolled transliteration + one-edit fuzzy matching over an in-memory index. Good enough for 100 stories; no stemming, no ranking signals. | Meilisearch/Typesense with a Hindi analyser (FR-S1). |
 | G19 | No search suggestions UI | `app/api/search/route.ts` | The endpoint supports type-ahead, but the header has no suggestion dropdown (FR-S3). | Add a combobox to the search field. |
